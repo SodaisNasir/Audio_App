@@ -1,14 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  Dimensions,
-  StatusBar,
-  ScrollView,
-  TouchableOpacity,
-} from 'react-native';
+import {StyleSheet, Text, View, Dimensions, ScrollView} from 'react-native';
 import {GlobalStyle} from '../../Constants/GlobalStyle';
 import {ms, s, vs} from 'react-native-size-matters';
 import {Colors} from '../../utils/Colors';
@@ -24,7 +15,9 @@ import {USER_DETAILS} from '../../redux/reducer/Holder';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Toast from 'react-native-simple-toast';
 import BackgroundImage from '../../components/BackgroundImage';
-const {width, height} = Dimensions.get('screen');
+import DoubleText from '../../components/Header/DoubleText';
+import ConnectionModal from '../../components/Modals/ConnectionModal';
+const {height} = Dimensions.get('screen');
 
 const Login = ({navigation}) => {
   const dispatch = useDispatch();
@@ -46,15 +39,10 @@ const Login = ({navigation}) => {
   return (
     <BackgroundImage
       source={require('../../assets/image/Backgrounds/login.jpg')}>
-      <View style={styles.TopRow}>
-        <View>
-          <Text style={styles.Text}>Welcome!</Text>
-          <Text style={styles.continue}>Please login to continue</Text>
-        </View>
-      </View>
-      <View style={{height: height / 3}} />
-      <View style={styles.second_container}>
-        <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <DoubleText first="Welcome!" second="Please login to continue" />
+        <View style={{height: height / 3.5}} />
+        <View style={styles.second_container}>
           <CustomInput
             name="email"
             rules={{
@@ -102,7 +90,11 @@ const Login = ({navigation}) => {
               title="Login with Google"
               containerStyle={GlobalStyle.CustomButtonRestyle}
               textRestyle={GlobalStyle.textRestyle}
-              // onPress={() => navigation.navigate('register')}
+              // onPress={() =>
+              //   navigation.navigate('register', {
+              //     type: 'social',
+              //   })
+              // }
             />
           </View>
           <View
@@ -112,7 +104,9 @@ const Login = ({navigation}) => {
                 alignSelf: 'center',
               },
             ]}>
-            <Text style={styles.No_Account}>You do not have an account</Text>
+            <Text style={styles.No_Account}>
+              If you do not have any account
+            </Text>
             <Text
               onPress={() => navigation.navigate('register')}
               style={[styles.No_Account, styles.SignUp]}>
@@ -128,19 +122,13 @@ const Login = ({navigation}) => {
             ]}>
             Forgot Password?
           </Text>
-        </ScrollView>
-      </View>
+        </View>
+      </ScrollView>
+      <ConnectionModal />
     </BackgroundImage>
   );
 };
 const styles = StyleSheet.create({
-  TopRow: {
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    width: '100%',
-    marginTop: StatusBar.currentHeight + s(10),
-  },
-
   Text: {
     color: Colors.White,
     fontFamily: Font.Work700,

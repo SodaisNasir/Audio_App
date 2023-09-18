@@ -14,7 +14,6 @@ const CheckButton = ({onPress, data, focus}) => {
       ) : (
         <FontAwesome name="circle" color={Colors.White} size={s(20)} />
       )}
-
       <Text style={styles.Heading}>{data.title}</Text>
     </TouchableOpacity>
   );
@@ -24,7 +23,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: Colors.White,
     fontSize: s(16),
-    fontFamily: Font.Inter500,
+    fontFamily: Font.Work500,
     marginHorizontal: ms(5),
   },
   row: {

@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   error: {
     color: 'red',
     fontSize: scale(14),
-    fontFamily: Font.Inter500,
+    fontFamily: Font.Work500,
   },
 });
 

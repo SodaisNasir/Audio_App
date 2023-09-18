@@ -22,16 +22,14 @@ const CustomInput = forwardRef((props, ref) => {
         multiline={props.multiline}
         placeholder={props.placeholder}
         placeholderTextColor={Colors.placeholderTextColor}
-        style={[styles.InputStyles, props.Gapp, props.restyle]}
+        style={[styles.InputStyles, props.restyle]}
         keyboardType={props.keyboardType}
         pattern={props.pattern}
         label={props.label}
         placeholderStyle={props.placeholderStyle}
-        fontSize={props.fontSize}
         maxLength={props.maxLength}
         cursorColor={Colors.White}
-        keyboardAppearance='default'
-        selectionColor={Colors.White}
+        selectionColor='rgba(255,255,255,0.7)'
       />
     </View>
   );
@@ -43,6 +41,8 @@ const styles = StyleSheet.create({
     height: '100%',
     color: Colors.White,
     fontFamily: Font.Work500,
+    fontSize: scale(16)
+
   },
   smallbox: {
     alignSelf: 'center',

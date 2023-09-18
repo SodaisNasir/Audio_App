@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     },
     TitleText: {
         color: Colors.White,
-        fontFamily: Font.Inter600,
+        fontFamily: Font.Work600,
         fontSize: scale(15),
         textAlign: 'center',
         textAlignVertical: 'center'

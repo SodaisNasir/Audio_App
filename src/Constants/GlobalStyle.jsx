@@ -1,5 +1,5 @@
 import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
-import {StyleSheet} from 'react-native';
+import {StatusBar, StyleSheet} from 'react-native';
 import {Colors} from '../utils/Colors';
 import {Font} from '../utils/font';
 
@@ -7,10 +7,6 @@ export const GlobalStyle = StyleSheet.create({
   Container: {
     flex: 1,
     backgroundColor: Colors.White,
-  },
-  Main_Container: {
-    flex: 1,
-    backgroundColor: Colors.Main,
   },
   CustomButtonRestyle: {
     backgroundColor: Colors.White,
@@ -45,7 +41,7 @@ export const GlobalStyle = StyleSheet.create({
     textAlign: 'center',
     padding: moderateScale(20),
     fontFamily: Font.Work600,
-    color: Colors.ThemeBlue,
+    color: Colors.Main,
   },
   ModalContainer: {
     justifyContent: 'center',
@@ -65,6 +61,10 @@ export const GlobalStyle = StyleSheet.create({
     alignSelf: 'center',
     borderRadius: scale(10),
     marginVertical: verticalScale(15),
+  },
+  Modal_Container: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.8)',
   },
   LottieView: {
     height: verticalScale(150),
@@ -112,9 +112,7 @@ export const GlobalStyle = StyleSheet.create({
     alignItems: 'center',
     marginTop: verticalScale(5),
   },
-  Date_number: {
-    fontSize: scale(13),
-    fontFamily: Font.Work400,
-    color: Colors.Black,
+  StatusBar: {
+    marginTop: StatusBar.currentHeight + scale(10),
   },
 });

@@ -14,7 +14,6 @@ const ConnectionModal = () => {
 
   useEffect(() => {
     const unsubscribe = NetInfo.addEventListener((state) => {
-      console.log("state", state);
       if (state.isConnected == false) {
         setIsConnected(true);
       } else {
@@ -28,7 +27,7 @@ const ConnectionModal = () => {
   }, []);
   return (
     <Modal
-      backdropOpacity={0.1}
+      backdropOpacity={0.3}
       isVisible={isConnected}
       onBackdropPress={() => setIsConnected(false)}
       animationIn="fadeInUpBig"
@@ -57,7 +56,7 @@ const styles = StyleSheet.create({
   MainModalBox: {
     height: verticalScale(48),
     width: "95%",
-    backgroundColor: Colors.Main,
+    backgroundColor: Colors.Red,
     borderRadius: scale(12),
     bottom: scale(20),
     overflow: "hidden",
@@ -79,7 +78,7 @@ const styles = StyleSheet.create({
   text: {
     color: Colors.White,
     fontSize: scale(14),
-    fontFamily: Font.Work500,
+    fontFamily: Font.Inter500,
   },
   TextBox: { flex: 3, justifyContent: "center" },
   IconBox: {

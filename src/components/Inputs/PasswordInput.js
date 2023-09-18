@@ -29,17 +29,14 @@ const PasswordInput = forwardRef((props, ref) => {
         numberOfLines={props.numberOfLines}
         placeholder={props.placeholder}
         placeholderTextColor={Colors.placeholderTextColor}
-        style={[styles.InputStyles, props.Gapp, props.restyle]}
+        style={[styles.InputStyles, props.restyle]}
         secureTextEntry={password}
         keyboardType={'default'}
         pattern={props.pattern}
         label={props.label}
-        placeholderStyle={props.placeholderStyle}
-        fontSize={props.fontSize}
         maxLength={props.maxLength}
         cursorColor={Colors.White}
-        keyboardAppearance='dark'
-        selectionColor={Colors.White}
+        selectionColor='rgba(255,255,255,0.7)'
       />
       <Pressable android_ripple={GlobalStyle.Yellow_Ripple} style={{ padding: moderateScale(5) }} onPress={() => setPassword(!password)}>
         {password ? (
@@ -58,6 +55,7 @@ const styles = StyleSheet.create({
     height: '100%',
     color: Colors.White,
     fontFamily: Font.Work500,
+    fontSize: scale(16)
   },
   smallbox: {
     alignSelf: 'center',

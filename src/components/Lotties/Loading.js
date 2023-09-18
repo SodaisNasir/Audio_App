@@ -8,27 +8,22 @@ import { GlobalStyle } from '../../Constants/GlobalStyle';
 
 const Loading = ({ isVisible }) => {
   return (
-    <SafeAreaView style={{ justifyContent: 'center' }}>
-      <ReactNativeModal
-        visible={isVisible}
-        style={[styles.modal, GlobalStyle.Container]}>
-        <View style={styles.buttons}>
-          <LottieView
-            autoPlay
-            style={GlobalStyle.LottieView}
-            source={require('../../assets/lottie/loader.json')}
-          />
-          <Text style={GlobalStyle.ModalText}>Please Wait...</Text>
-        </View>
-      </ReactNativeModal>
-    </SafeAreaView>
+    <ReactNativeModal
+      visible={isVisible}
+      style={[GlobalStyle.MainModal, GlobalStyle.Modal_Container]}>
+      <View style={styles.buttons}>
+        <LottieView
+          autoPlay
+          style={GlobalStyle.LottieView}
+          source={require('../../assets/lottie/loader.json')}
+        />
+        <Text style={GlobalStyle.ModalText}>Please Wait...</Text>
+      </View>
+    </ReactNativeModal>
   );
 };
 
 const styles = StyleSheet.create({
-  modal: {
-    margin: 0,
-  },
   buttons: {
     backgroundColor: Colors.ThemeCream,
     width: '60%',

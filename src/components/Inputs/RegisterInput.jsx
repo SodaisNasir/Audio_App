@@ -1,6 +1,6 @@
-import React, {forwardRef} from 'react';
+import React, {forwardRef, useState} from 'react';
 import {useController} from 'react-hook-form';
-import {StyleSheet, View, Text, TextInput} from 'react-native';
+import {StyleSheet, View, Text, TextInput, Pressable} from 'react-native';
 import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import {Colors} from '../../utils/Colors';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -9,6 +9,9 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
 import {GlobalStyle} from '../../Constants/GlobalStyle';
 import {Font} from '../../utils/font';
+import Entypo from 'react-native-vector-icons/Entypo';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
 const ResisterInput = forwardRef((props, ref) => {
   const {field} = useController({
     control: props.control,
@@ -16,10 +19,12 @@ const ResisterInput = forwardRef((props, ref) => {
     name: props.name,
     rules: props.rules,
   });
+
+  const [password, setPassword] = useState(true);
   return (
-    <>
+    <View style={styles.MainView}>
+      <Text style={styles.label}>{props.label}</Text>
       <View style={[styles.smallbox, GlobalStyle.Row, props.Hello]}>
-        <Text style={styles.label}>{props.label}</Text>
         {props.user && (
           <AntDesign name="user" color={Colors.White} size={scale(18)} />
         )}
@@ -54,36 +59,55 @@ const ResisterInput = forwardRef((props, ref) => {
           outlineColor={Colors.Non}
           activeOutlineColor={Colors.Non}
           textColor={Colors.White}
+          secureTextEntry={props.password ? password : false}
         />
+        {props.password && (
+          <Pressable
+            android_ripple={GlobalStyle.Yellow_Ripple}
+            style={{padding: moderateScale(5)}}
+            onPress={() => setPassword(!password)}>
+            {password ? (
+              <MaterialCommunityIcons
+                color={Colors.White}
+                size={scale(20)}
+                name="eye"
+              />
+            ) : (
+              <Entypo
+                color={Colors.White}
+                size={scale(20)}
+                name="eye-with-line"
+              />
+            )}
+          </Pressable>
+        )}
       </View>
-    </>
+    </View>
   );
 });
 const styles = StyleSheet.create({
   InputStyles: {
     color: Colors.White,
-    width: '95%',
+    width: '83%',
     paddingHorizontal: moderateScale(10),
     fontFamily: Font.Work500,
   },
   label: {
     fontSize: scale(15),
-    zIndex: 10,
     color: Colors.White,
-    backgroundColor: Colors.Main,
-    position: 'absolute',
-    top: verticalScale(-10),
-    left: scale(10),
-    paddingHorizontal: moderateScale(7),
+    paddingHorizontal: moderateScale(5),
     fontFamily: Font.Work500,
+    marginBottom: verticalScale(3),
   },
   smallbox: {
-    marginTop: verticalScale(15),
     height: verticalScale(50),
     borderWidth: scale(1),
     borderRadius: scale(10),
     borderColor: Colors.White,
     paddingHorizontal: moderateScale(13),
+  },
+  MainView: {
+    marginTop: verticalScale(15),
   },
 });
 

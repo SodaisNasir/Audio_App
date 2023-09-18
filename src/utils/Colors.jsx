@@ -1,7 +1,7 @@
 export const Colors = {
   Main: '#020419',
   Sky: '#39A8DB',
-
+  ThemeCream: '#F4F4F4',
   White: '#fff',
   Black: '#000',
   placeholderTextColor: '#E3E4E7',
@@ -10,4 +10,6 @@ export const Colors = {
   Red: '#B60909',
   Grey: '#D9D9D9',
   LightGrey: '#F7F7F7',
+  LightGreen: '#50C878',
+  Success: '#198754',
 };
