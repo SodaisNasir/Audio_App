@@ -10,10 +10,11 @@ import {
 import React from 'react';
 import {GlobalStyle} from '../../Constants/GlobalStyle';
 import {Colors} from '../../utils/Colors';
-import {moderateScale, mvs, scale} from 'react-native-size-matters';
+import { mvs, scale} from 'react-native-size-matters';
 import {Font} from '../../utils/font';
 import CustomButton from '../../components/CustomButton';
 import FastImage from 'react-native-fast-image';
+import withConnectionModal from '../../Hoc/ConnectionModalHOC';
 
 const {width, height} = Dimensions.get('screen');
 const OverBoard = ({navigation}) => {
@@ -91,4 +92,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OverBoard;
+export default withConnectionModal(OverBoard);

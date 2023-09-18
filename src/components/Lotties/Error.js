@@ -9,14 +9,14 @@ const Error = ({ message, isVisible }) => {
   return (
     <Modal
       isVisible={isVisible}
-      style={[GlobalStyle.MainModal, { backgroundColor: 'rgba(0,0,0,0.8)' }]}>
+      style={[GlobalStyle.MainModal, GlobalStyle.Modal_Container]}>
       <SafeAreaView style={GlobalStyle.ModalContainer}>
         <LottieView
           autoPlay
           style={GlobalStyle.LottieView}
           source={require('../../assets/lottie/error.json')}
         />
-        <Text style={[GlobalStyle.ModalText, { color: Colors.Danger }]}>
+        <Text style={[GlobalStyle.ModalText, { color: Colors.Red }]}>
           {message}
         </Text>
       </SafeAreaView>

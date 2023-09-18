@@ -43,12 +43,12 @@ export const GlobalStyle = StyleSheet.create({
     fontFamily: Font.Work600,
     color: Colors.Main,
   },
-  ModalContainer: {
+  ModalContainer: { 
     justifyContent: 'center',
+    backgroundColor: Colors.ThemeCream,
     width: '70%',
-    borderRadius: scale(10),
-    backgroundColor: Colors.Main,
     alignSelf: 'center',
+    borderRadius: scale(20),
   },
   MainModal: {
     justifyContent: 'center',

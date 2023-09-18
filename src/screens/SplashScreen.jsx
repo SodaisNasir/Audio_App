@@ -7,7 +7,7 @@ import {Colors} from '../utils/Colors';
 const {width, height} = Dimensions.get('screen');
 const SplashScreen = () => {
   return (
-    <View style={[styles.Container, GlobalStyle.Main_Container]}>
+    <View style={styles.Container}>
       <StatusBar backgroundColor={Colors.Main} barStyle="light-content" />
       <View style={styles.ImageBox}>
         <Image
@@ -28,6 +28,8 @@ const styles = StyleSheet.create({
   Container: {
     justifyContent: 'space-around',
     alignItems: 'center',
+    flex: 1,
+    backgroundColor: Colors.Main,
   },
   ImageBox: {
     width: width / 1.2,

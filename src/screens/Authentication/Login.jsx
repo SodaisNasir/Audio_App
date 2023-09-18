@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {StyleSheet, Text, View, Dimensions, ScrollView} from 'react-native';
 import {GlobalStyle} from '../../Constants/GlobalStyle';
 import {ms, s, vs} from 'react-native-size-matters';
@@ -8,26 +8,30 @@ import CustomInput from '../../components/Inputs/CustomInput';
 import Validation from '../../components/Validation';
 import {EmailRegix} from '../../utils/url';
 import {useForm} from 'react-hook-form';
-import PasswordInput from '../../components/Inputs/PasswordInput';
 import CustomButton from '../../components/CustomButton';
 import {useDispatch} from 'react-redux';
 import {USER_DETAILS} from '../../redux/reducer/Holder';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Toast from 'react-native-simple-toast';
 import BackgroundImage from '../../components/BackgroundImage';
 import DoubleText from '../../components/Header/DoubleText';
 import ConnectionModal from '../../components/Modals/ConnectionModal';
+import Error from '../../components/Lotties/Error';
 const {height} = Dimensions.get('screen');
 
 const Login = ({navigation}) => {
   const dispatch = useDispatch();
+  const [CheckEmail, setCheckEmail] = useState(false);
+
 
   const onSubmit = async data => {
-    if (data.email == 'user@gmail.com') {
+    if (data.email == 'user@gmail.com' && data.password == '12345678') {
       dispatch({type: USER_DETAILS, payload: data.email});
-      await AsyncStorage.setItem('userDetails', JSON.stringify(data.email));
+      // await AsyncStorage.setItem('userDetails', JSON.stringify(data.email));
     } else {
-      Toast.show('Check Email');
+      setCheckEmail(true)
+      setTimeout(() => {
+        setCheckEmail(false)
+      }, 2500);
     }
   };
 
@@ -59,8 +63,8 @@ const Login = ({navigation}) => {
             keyboardType={'email-address'}
           />
           {errors.email && <Validation title={errors.email.message} />}
-          <PasswordInput
-            textContentType={'password'}
+          <CustomInput
+            password
             name="password"
             rules={{
               required: '*Password is required',
@@ -125,6 +129,8 @@ const Login = ({navigation}) => {
         </View>
       </ScrollView>
       <ConnectionModal />
+      <Error isVisible={CheckEmail} message={'Check your Email or Password'} />
+
     </BackgroundImage>
   );
 };
