@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
   overlay: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: 'rgba(0, 0, 0, 0.6)',
+    flex: 1,
     paddingHorizontal: moderateScale(20),
   },
 });

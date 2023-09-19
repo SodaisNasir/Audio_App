@@ -24,7 +24,7 @@ const ResisterInput = forwardRef((props, ref) => {
   return (
     <View style={styles.MainView}>
       <Text style={styles.label}>{props.label}</Text>
-      <View style={[styles.smallbox, GlobalStyle.Row, props.Hello]}>
+      <View style={[styles.Container, GlobalStyle.Row, props.Hello]}>
         {props.user && (
           <AntDesign name="user" color={Colors.White} size={scale(18)} />
         )}
@@ -54,11 +54,8 @@ const ResisterInput = forwardRef((props, ref) => {
           pattern={props.pattern}
           label={props.label}
           maxLength={props.maxLength}
-          cursorColor={Colors.White}
-          selectionColor={Colors.Black}
-          outlineColor={Colors.Non}
-          activeOutlineColor={Colors.Non}
-          textColor={Colors.White}
+          cursorColor={Colors.Yellow}
+          selectionColor="rgba(236, 179, 101, 0.6)"
           secureTextEntry={props.password ? password : false}
         />
         {props.password && (
@@ -99,7 +96,7 @@ const styles = StyleSheet.create({
     fontFamily: Font.Work500,
     marginBottom: verticalScale(3),
   },
-  smallbox: {
+  Container: {
     height: verticalScale(50),
     borderWidth: scale(1),
     borderRadius: scale(10),

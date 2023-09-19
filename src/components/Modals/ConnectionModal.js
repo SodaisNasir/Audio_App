@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { scale, verticalScale } from "react-native-size-matters";
-import { showModalAction, hideModalAction} from "../../redux/reducer/ConnectionReducer";
+import { showModalAction, hideModalAction } from "../../redux/reducer/ConnectionReducer";
 import { connect } from 'react-redux';
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import AntDesign from "react-native-vector-icons/AntDesign";
@@ -60,40 +60,40 @@ const ConnectionModal = ({
         hideModalAction();
       }, 3000); // Hide the popup after 3 seconds
     }
-  }, [isConnectedNow, hasShownModal, showModalAction, hideModalAction]);  
+  }, [isConnectedNow, hasShownModal, showModalAction, hideModalAction]);
   return (
     <>
-     {showModal && (
-       <View style={styles.MainModalBox}>
-       <View style={{ marginRight: scale(5) }}>
-         {isConnected ? (
-           <AntDesign
-             name="checkcircle"
-             size={scale(20)}
-             color={Colors.Success}
-           />
-         ) : (
-           <MaterialIcons
-             name="wifi-tethering-error"
-             size={scale(30)}
-             color={Colors.Red}
-           />
-         )}
-       </View>
-       <View style={styles.TextBox}>
-         <Text
-           style={[
-             styles.text,
-             { color: isConnected ? Colors.Success : Colors.Red },
-           ]}
-         >
-           {isConnectedNow
+      {showModal && (
+        <View style={styles.MainModalBox}>
+          <View style={{ marginRight: scale(5) }}>
+            {isConnected ? (
+              <AntDesign
+                name="checkcircle"
+                size={scale(20)}
+                color={Colors.Success}
+              />
+            ) : (
+              <MaterialIcons
+                name="wifi-tethering-error"
+                size={scale(30)}
+                color={Colors.Red}
+              />
+            )}
+          </View>
+          <View style={styles.TextBox}>
+            <Text
+              style={[
+                styles.text,
+                { color: isConnected ? Colors.Success : Colors.Red },
+              ]}
+            >
+              {isConnectedNow
                 ? "Internet Connection Restored"
                 : "No Internet Connection"}
-         </Text>
-       </View>
-     </View>
-     )}
+            </Text>
+          </View>
+        </View>
+      )}
     </>
   );
 };
@@ -110,7 +110,9 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     justifyContent: "center",
     alignItems: "center",
+    position: 'absolute',
   },
+
   text: {
     fontSize: scale(14),
     fontFamily: Font.Work500,

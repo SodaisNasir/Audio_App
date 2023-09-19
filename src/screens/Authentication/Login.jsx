@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, Text, View, Dimensions, ScrollView} from 'react-native';
 import {GlobalStyle} from '../../Constants/GlobalStyle';
 import {ms, s, vs} from 'react-native-size-matters';
@@ -22,15 +22,14 @@ const Login = ({navigation}) => {
   const dispatch = useDispatch();
   const [CheckEmail, setCheckEmail] = useState(false);
 
-
   const onSubmit = async data => {
     if (data.email == 'user@gmail.com' && data.password == '12345678') {
       dispatch({type: USER_DETAILS, payload: data.email});
       // await AsyncStorage.setItem('userDetails', JSON.stringify(data.email));
     } else {
-      setCheckEmail(true)
+      setCheckEmail(true);
       setTimeout(() => {
-        setCheckEmail(false)
+        setCheckEmail(false);
       }, 2500);
     }
   };
@@ -90,6 +89,7 @@ const Login = ({navigation}) => {
           </View>
           <View>
             <CustomButton
+              dark
               google
               title="Login with Google"
               containerStyle={GlobalStyle.CustomButtonRestyle}
@@ -118,7 +118,7 @@ const Login = ({navigation}) => {
             </Text>
           </View>
           <Text
-            onPress={() => navigation.navigate('forget')}
+            onPress={() => navigation.navigate('reset')}
             style={[
               styles.No_Account,
               styles.SignUp,
@@ -130,7 +130,6 @@ const Login = ({navigation}) => {
       </ScrollView>
       <ConnectionModal />
       <Error isVisible={CheckEmail} message={'Check your Email or Password'} />
-
     </BackgroundImage>
   );
 };

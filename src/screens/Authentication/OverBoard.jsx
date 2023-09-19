@@ -10,7 +10,7 @@ import {
 import React from 'react';
 import {GlobalStyle} from '../../Constants/GlobalStyle';
 import {Colors} from '../../utils/Colors';
-import { mvs, scale} from 'react-native-size-matters';
+import {mvs, scale} from 'react-native-size-matters';
 import {Font} from '../../utils/font';
 import CustomButton from '../../components/CustomButton';
 import FastImage from 'react-native-fast-image';
@@ -27,7 +27,7 @@ const OverBoard = ({navigation}) => {
       />
       <View style={styles.Image_Container}>
         <ImageBackground
-          resizeMode="cover"
+          resizeMode="contain"
           source={require('../../assets/image/Backgrounds/overboard.jpg')}
           style={styles.Image_Container}>
           <FastImage
@@ -51,6 +51,7 @@ const OverBoard = ({navigation}) => {
                 containerStyle={GlobalStyle.CustomButtonRestyle}
                 textRestyle={GlobalStyle.textRestyle}
                 onPress={() => navigation.navigate('register')}
+                dark
               />
               <CustomButton
                 title="Login"

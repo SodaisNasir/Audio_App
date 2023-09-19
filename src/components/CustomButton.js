@@ -7,7 +7,7 @@ import { GlobalStyle } from '../Constants/GlobalStyle';
 const CustomButton = props => {
   return (
     <Pressable
-      android_ripple={GlobalStyle.Ripple}
+      android_ripple={props.dark ? GlobalStyle.Ripple : GlobalStyle.WhiteRipple}
       onPress={props.onPress}
       style={[styles.containerStyle, props.containerStyle]}>
       {props.google && (<Image
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   },
   font: {
     color: Colors.White,
-    fontSize: scale(15),
+    fontSize: scale(17),
     textTransform: 'capitalize',
     fontFamily: Font.Work600,
   },

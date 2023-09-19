@@ -29,10 +29,10 @@ const Register = ({navigation, route}) => {
       }, 2000);
     } else {
       setLoading(true);
-      // setTimeout(() => {
-      //   setLoading(false);
-      //   navigation.navigate('otp');
-      // }, 2000);
+      setTimeout(() => {
+        setLoading(false);
+        navigation.navigate('otp');
+      }, 2000);
     }
   };
   const {
@@ -42,7 +42,7 @@ const Register = ({navigation, route}) => {
   } = useForm({mode: 'all'});
   return (
     <BackgroundImage
-      source={require('../../assets/image/Backgrounds/login.jpg')}>
+      source={require('../../assets/image/Backgrounds/register.jpg')}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <DoubleText
           first="Create account"
