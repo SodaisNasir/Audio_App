@@ -6,7 +6,7 @@ import {Font} from '../utils/font';
 export const GlobalStyle = StyleSheet.create({
   Container: {
     flex: 1,
-    backgroundColor: Colors.White,
+    backgroundColor: Colors.Main,
   },
   CustomButtonRestyle: {
     backgroundColor: Colors.White,
@@ -29,9 +29,14 @@ export const GlobalStyle = StyleSheet.create({
   },
   showBar: {
     display: 'flex',
-    backgroundColor: Colors.ThemeGrey,
-    height: verticalScale(60),
-    borderTopColor: Colors.ThemeGrey,
+    backgroundColor: Colors.BlackOp,
+    height: verticalScale(50),
+    borderTopColor: Colors.BlackOp,
+    borderTopWidth: scale(1),
+    position: 'absolute',
+    bottom: 0,
+    borderTopRightRadius: scale(20),
+    borderTopLeftRadius: scale(20),
   },
   HideBar: {
     display: 'none',
@@ -43,7 +48,7 @@ export const GlobalStyle = StyleSheet.create({
     fontFamily: Font.Work600,
     color: Colors.Main,
   },
-  ModalContainer: { 
+  ModalContainer: {
     justifyContent: 'center',
     backgroundColor: Colors.ThemeCream,
     width: '70%',
@@ -103,6 +108,11 @@ export const GlobalStyle = StyleSheet.create({
     shadowRadius: 3.84,
 
     elevation: 5,
+  },
+  TextShadow: {
+    textShadowColor: 'rgba(0, 0, 0, 1)',
+    textShadowOffset: {width: -1, height: 1},
+    textShadowRadius: 10,
   },
   MapContainer: {
     flex: 1,

@@ -12,4 +12,7 @@ export const Colors = {
   LightGrey: '#F7F7F7',
   LightGreen: '#50C878',
   Success: '#198754',
+  ThemeGrey: '#3D4663',
+  Ash: '#141824',
+  BlackOp: 'rgba(0, 0, 10, 0.75)',
 };

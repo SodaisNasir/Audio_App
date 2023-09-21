@@ -14,7 +14,6 @@ import {USER_DETAILS} from '../../redux/reducer/Holder';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import BackgroundImage from '../../components/BackgroundImage';
 import DoubleText from '../../components/Header/DoubleText';
-import ConnectionModal from '../../components/Modals/ConnectionModal';
 import Error from '../../components/Lotties/Error';
 const {height} = Dimensions.get('screen');
 
@@ -25,12 +24,12 @@ const Login = ({navigation}) => {
   const onSubmit = async data => {
     if (data.email == 'user@gmail.com' && data.password == '12345678') {
       dispatch({type: USER_DETAILS, payload: data.email});
-      // await AsyncStorage.setItem('userDetails', JSON.stringify(data.email));
+      await AsyncStorage.setItem('userDetails', JSON.stringify(data.email));
     } else {
       setCheckEmail(true);
       setTimeout(() => {
         setCheckEmail(false);
-      }, 2500);
+      }, 2000);
     }
   };
 
@@ -128,7 +127,6 @@ const Login = ({navigation}) => {
           </Text>
         </View>
       </ScrollView>
-      <ConnectionModal />
       <Error isVisible={CheckEmail} message={'Check your Email or Password'} />
     </BackgroundImage>
   );

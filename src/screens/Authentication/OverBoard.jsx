@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   Sec_Box: {
-    backgroundColor: Colors.Main,
+    backgroundColor: Colors.Black,
     borderTopRightRadius: scale(30),
     borderTopLeftRadius: scale(30),
     justifyContent: 'center',

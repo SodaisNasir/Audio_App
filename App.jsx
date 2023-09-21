@@ -8,6 +8,7 @@ import {USER_DETAILS} from './src/redux/reducer/Holder';
 import Toast from 'react-native-simple-toast';
 const App = () => {
   const dispatch = useDispatch();
+
   const [loading, setLoading] = useState(true);
   const userDetails = useSelector(state => state.userDetails);
 

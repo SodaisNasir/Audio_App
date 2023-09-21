@@ -1,20 +1,49 @@
-import { StyleSheet, Text, Pressable, Image } from 'react-native';
-import React from 'react';
+import React, { useState, useRef } from 'react';
+import { StyleSheet, Text, Pressable, Image, Animated } from 'react-native';
 import { scale, verticalScale } from 'react-native-size-matters';
 import { Font } from '../utils/font';
 import { Colors } from '../utils/Colors';
-import { GlobalStyle } from '../Constants/GlobalStyle';
+
 const CustomButton = props => {
+  const [isPressed, setIsPressed] = useState(false);
+  const scaleValue = useRef(new Animated.Value(1)).current;
+
+  const handlePressIn = () => {
+    setIsPressed(true);
+    Animated.timing(scaleValue, {
+      toValue: 0.95,
+      duration: 1000,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  const handlePressOut = () => {
+    setIsPressed(false);
+    Animated.timing(scaleValue, {
+      toValue: 1,
+      duration: 1000,
+      useNativeDriver: true,
+    }).start();
+  };
+
   return (
     <Pressable
-      android_ripple={props.dark ? GlobalStyle.Ripple : GlobalStyle.WhiteRipple}
       onPress={props.onPress}
-      style={[styles.containerStyle, props.containerStyle]}>
-      {props.google && (<Image
-        style={styles.Image}
-        resizeMode='contain'
-        source={require('../assets/image/Icons/google.png')}
-      />)}
+      onPressIn={handlePressIn}
+      onPressOut={handlePressOut}
+      style={[
+        styles.containerStyle,
+        { transform: [{ scale: !isPressed ? 0.9 : scaleValue.__getValue() }] },
+        props.containerStyle,
+      ]}
+    >
+      {props.google && (
+        <Image
+          style={styles.Image}
+          resizeMode='contain'
+          source={require('../assets/image/Icons/google.png')}
+        />
+      )}
       <Text style={[styles.font, props.textRestyle]}>{props.title}</Text>
     </Pressable>
   );
@@ -35,6 +64,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     overflow: 'hidden',
   },
+  containerPressed: {
+    transform: [{ scale: 0.90 }],
+  },
   font: {
     color: Colors.White,
     fontSize: scale(17),
@@ -44,7 +76,6 @@ const styles = StyleSheet.create({
   Image: {
     width: scale(30),
     height: scale(30),
-    marginRight: scale(8)
+    marginRight: scale(8),
   },
-
 });

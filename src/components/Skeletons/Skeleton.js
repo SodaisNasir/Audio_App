@@ -1,19 +1,23 @@
 import React from 'react';
-import {scale, verticalScale} from 'react-native-size-matters';
+import { scale, verticalScale } from 'react-native-size-matters';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
 import { Colors } from '../../utils/Colors';
+import { tab } from '../../Constants/Responsive';
+import { Dimensions } from 'react-native';
 
-const Skeleton = ({ChangeBorderRadius}) => {
+const Skeleton = ({ ChangeBorderRadius }) => {
+  const { width, height } = Dimensions.get('screen');
+
   return (
     <SkeletonPlaceholder
       speed={1350}
-      borderRadius={ChangeBorderRadius ? scale(350) :  scale(20)}
+      borderRadius={ChangeBorderRadius ? scale(350) : scale(10)}
       highlightColor={Colors.Main}
-      backgroundColor={Colors.Ash}>
-      <SkeletonPlaceholder.Item marginTop={verticalScale(15)} flexDirection="row" alignItems="center">
+      backgroundColor={Colors.ThemeCream}>
+      <SkeletonPlaceholder.Item marginTop={verticalScale(5)}>
         <SkeletonPlaceholder.Item
-          width={scale(130)}
-          height={scale(130)}
+          width={tab ? width / 3.2 : width / 2.2}
+          height={height / 8}
           marginLeft={scale(8)}
         />
       </SkeletonPlaceholder.Item>

@@ -3,25 +3,33 @@ import React from 'react';
 import LottieView from 'lottie-react-native';
 import {GlobalStyle} from '../Constants/GlobalStyle';
 import {Colors} from '../utils/Colors';
+import BackgroundImage from '../components/BackgroundImage';
+import {scale} from 'react-native-size-matters';
 
-const {width, height} = Dimensions.get('screen');
+const {width} = Dimensions.get('screen');
 const SplashScreen = () => {
   return (
-    <View style={styles.Container}>
-      <StatusBar backgroundColor={Colors.Main} barStyle="light-content" />
-      <View style={styles.ImageBox}>
-        <Image
-          style={GlobalStyle.Image}
-          resizeMode="contain"
-          source={require('../assets/image/Logos/logo.jpg')}
+    <BackgroundImage source={require('../assets/image/Backgrounds/splash.jpg')}>
+      <View style={styles.Container}>
+        <StatusBar
+          backgroundColor={Colors.Non}
+          translucent
+          barStyle="dark-content"
+        />
+        <View style={styles.ImageBox}>
+          <Image
+            style={GlobalStyle.Image}
+            resizeMode="contain"
+            source={require('../assets/image/Logos/logo.jpg')}
+          />
+        </View>
+        <LottieView
+          autoPlay
+          style={GlobalStyle.LottieView}
+          source={require('../assets/lottie/splash_lottie.json')}
         />
       </View>
-      <LottieView
-        autoPlay
-        style={GlobalStyle.LottieView}
-        source={require('../assets/lottie/splash_lottie.json')}
-      />
-    </View>
+    </BackgroundImage>
   );
 };
 const styles = StyleSheet.create({
@@ -29,11 +37,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     flex: 1,
-    backgroundColor: Colors.Main,
   },
   ImageBox: {
-    width: width / 1.2,
-    height: height / 3.3,
+    width: width / 1.7,
+    borderRadius: scale(15),
+    aspectRatio: 1 / 1,
+    overflow: 'hidden',
   },
 });
 export default SplashScreen;
