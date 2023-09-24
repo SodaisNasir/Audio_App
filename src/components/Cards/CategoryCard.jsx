@@ -11,6 +11,7 @@ import {scale} from 'react-native-size-matters';
 import {GlobalStyle} from '../../Constants/GlobalStyle';
 import {Colors} from '../../utils/Colors';
 import {tab} from '../../Constants/Responsive';
+import { Font } from '../../utils/font';
 
 const {height} = Dimensions.get('screen');
 const CategoryCard = ({data, onPress}) => {
@@ -44,7 +45,8 @@ const CategoryCard = ({data, onPress}) => {
         styles.Container,
         {
           width: tab ? '31%' : '47%',
-          transform: [{scale: isPressed ? 0.9 : scaleValue.__getValue()}],
+          transform: [{scale: isPressed ? 0.95 : scaleValue.__getValue()}],
+          opacity: isPressed ? 0.6 : 1
         },
       ]}>
       <ImageBackground
@@ -70,6 +72,8 @@ const styles = StyleSheet.create({
     color: Colors.White,
     textTransform: 'capitalize',
     margin: scale(5),
+    fontFamily:Font.Work500
+    ,fontSize:scale(15)
   },
 });
 

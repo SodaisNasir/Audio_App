@@ -5,7 +5,14 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Image, StyleSheet} from 'react-native';
 
 import Dashboard from '../screens/Users/Home/Dashboard';
+import Category_Detail from '../screens/Users/Home/Category_Detail';
+import SingleBookDetail from '../screens/Users/Home/SingleBookDetail';
+import Player from '../screens/Users/Home/Player';
+
 import Profile from '../screens/Users/Profile/UserProfile';
+import Library from '../screens/Users/Library/UserLibrary';
+import Setting from '../screens/Users/Setting/UserSetting';
+import Language from '../screens/Users/Setting/Language';
 
 import {ms, s} from 'react-native-size-matters';
 import {Colors} from '../utils/Colors';
@@ -18,6 +25,7 @@ const UserNavigator = () => {
       <Tab.Navigator
         initialRouteName="home"
         screenOptions={{
+          tabBarHideOnKeyboard: true,
           tabBarLabelPosition: 'below-icon',
           headerShown: false,
           tabBarActiveTintColor: Colors.White,
@@ -36,6 +44,18 @@ const UserNavigator = () => {
             tabBarIcon: ({focused}) => (
               <Image
                 source={require('../assets/image/Icons/home.png')}
+                style={styles.Image}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="library"
+          component={AllLibrary}
+          options={{
+            tabBarIcon: ({focused}) => (
+              <Image
+                source={require('../assets/image/Icons/library.png')}
                 style={styles.Image}
               />
             ),
@@ -75,6 +95,11 @@ function AllDashboard() {
       screenOptions={{headerShown: false, animation: 'flip'}}
       initialRouteName="dashboard">
       <Stack.Screen name="dashboard" component={Dashboard} />
+      <Stack.Screen name="setting" component={Setting} />
+      <Stack.Screen name="language" component={Language} />
+      <Stack.Screen name="category_detail" component={Category_Detail} />
+      <Stack.Screen name="singleBookDetail" component={SingleBookDetail} />
+      <Stack.Screen name="player" component={Player} />
     </Stack.Navigator>
   );
 }
@@ -82,8 +107,18 @@ function AllProfile() {
   return (
     <Stack.Navigator
       screenOptions={{headerShown: false, animation: 'flip'}}
-      initialRouteName="profile">
-      <Stack.Screen name="profile" component={Profile} />
+      initialRouteName="userprofile">
+      <Stack.Screen name="userprofile" component={Profile} />
+    </Stack.Navigator>
+  );
+}
+
+function AllLibrary() {
+  return (
+    <Stack.Navigator
+      screenOptions={{headerShown: false, animation: 'flip'}}
+      initialRouteName="book_library">
+      <Stack.Screen name="user_library" component={Library} />
     </Stack.Navigator>
   );
 }

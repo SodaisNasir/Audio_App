@@ -11,7 +11,6 @@ import {GlobalStyle} from '../../Constants/GlobalStyle';
 import CustomButton from '../../components/CustomButton';
 import Error from '../../components/Lotties/Error';
 import Loading from '../../components/Lotties/Loading';
-import ConnectionModal from '../../components/Modals/ConnectionModal';
 import {Font} from '../../utils/font';
 import {Colors} from '../../utils/Colors';
 import {ms, s, vs} from 'react-native-size-matters';
@@ -152,7 +151,6 @@ const Register = ({navigation, route}) => {
       <Error isVisible={errorModal} message={'Password is not matched'} />
       <Error isVisible={isEmailExist} message={'This email already exists'} />
       <Loading isVisible={loading} />
-      <ConnectionModal />
     </BackgroundImage>
   );
 };

@@ -3,8 +3,8 @@ import React from 'react';
 import {scale} from 'react-native-size-matters';
 import {Font} from '../utils/font';
 
-const Validation = ({title}) => {
-  return <Text style={styles.error}>{title}</Text>;
+const Validation = ({title,restyle}) => {
+  return <Text style={[styles.error,restyle]}>{title}</Text>;
 };
 
 const styles = StyleSheet.create({

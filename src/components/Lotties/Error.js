@@ -9,6 +9,7 @@ const Error = ({ message, isVisible }) => {
   return (
     <Modal
       isVisible={isVisible}
+      statusBarTranslucent
       style={[GlobalStyle.MainModal, GlobalStyle.Modal_Container]}>
       <SafeAreaView style={GlobalStyle.ModalContainer}>
         <LottieView

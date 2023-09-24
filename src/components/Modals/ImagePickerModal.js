@@ -10,13 +10,13 @@ import {Font} from '../../utils/font';
 
 const ImagePickerModal = ({isVisible, onClose, PressPicture, PressCamera}) => {
   return (
-    <View style={{flex: 1, width: '100%'}}>
       <Modal
       testID={'modal'}
         backdropOpacity={0.3}
         onBackdropPress={onClose}
         isVisible={isVisible}
         onBackButtonPress={onClose}
+        statusBarTranslucent
         style={{
           margin: 0,
           justifyContent: 'flex-end',
@@ -48,14 +48,13 @@ const ImagePickerModal = ({isVisible, onClose, PressPicture, PressCamera}) => {
           </View>
         </View>
       </Modal>
-    </View>
   );
 };
 const styles = StyleSheet.create({
   Text1: {
-    fontSize: scale(11),
-    fontFamily: Font.Gilroy700,
-    color: Colors.placeholderTextColor,
+    fontSize: scale(12),
+    fontFamily: Font.Work600,
+    color: Colors.Main,
   },
   ModalBtn: {
     flex: 1,
@@ -68,10 +67,11 @@ const styles = StyleSheet.create({
   SecCon: {
     paddingVertical: moderateScale(15),
     width: '100%',
-    backgroundColor: Colors.ThemeBlue,
+    backgroundColor: Colors.Grey,
     borderTopLeftRadius: scale(10),
     borderTopRightRadius: scale(10),
     flexDirection: 'row',
+
   },
   tinyLogo: {
     height: verticalScale(50),
@@ -79,8 +79,9 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   CrossBOx: {
-    backgroundColor: Colors.Main,
+    backgroundColor: Colors.Red,
     width: scale(25),
+    height: scale(25),
     borderRadius: 100,
     alignItems: 'center',
     marginBottom: verticalScale(-10),

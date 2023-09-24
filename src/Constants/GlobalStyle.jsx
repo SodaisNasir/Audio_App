@@ -8,6 +8,9 @@ export const GlobalStyle = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.Main,
   },
+  Trans_Container: {
+    flex: 1,
+  },
   CustomButtonRestyle: {
     backgroundColor: Colors.White,
     width: '85%',
@@ -80,18 +83,8 @@ export const GlobalStyle = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-  Ripple: {
-    color: Colors.Main,
-    borderless: true,
-    foreground: true,
-  },
   Yellow_Ripple: {
     color: '#FDBB26',
-    borderless: true,
-    foreground: true,
-  },
-  WhiteRipple: {
-    color: Colors.White,
     borderless: true,
     foreground: true,
   },
@@ -124,5 +117,19 @@ export const GlobalStyle = StyleSheet.create({
   },
   StatusBar: {
     marginTop: StatusBar.currentHeight + scale(10),
+  },
+  Height: {
+    height: verticalScale(55),
+  },
+  SettingButton: {marginTop: verticalScale(25), width: '90%'},
+  ArrowCircle: {
+    borderRadius: 100,
+    backgroundColor: Colors.Black,
+    width: scale(30),
+    aspectRatio: 1 / 1,
+    marginTop:StatusBar.currentHeight,
+    justifyContent:'center',
+    alignItems:'center',
+    marginRight:scale(10)
   },
 });

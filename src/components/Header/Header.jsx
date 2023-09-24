@@ -18,97 +18,69 @@ import {Colors} from '../../utils/Colors';
 import {Font} from '../../utils/font';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {GlobalStyle} from '../../Constants/GlobalStyle';
-// import { Notification } from '../../redux/actions/UserAction';
 const Header = props => {
   const navigation = useNavigation();
-  const [notification, setNotification] = useState('');
-  //   useFocusEffect(
-  //     useCallback(() => {
-  //       Notification(setNotification);
-  //     }, []),
-  //   );
+ 
   return (
-    <View style={[styles.Container, props.Container, GlobalStyle.Row]}>
+    <View style={[styles.Container, props.Container, GlobalStyle.Space_Between]}>
       <View style={GlobalStyle.Row}>
+        {props.c_back && (
+           <Pressable onPress={() => navigation.goBack()}
+           style={[GlobalStyle.ArrowCircle,props.arrowCircleRestyle]}>
+           <Ionicons name="arrow-back" color={Colors.White} size={scale(18)} />
+           </Pressable>
+        )}
         {props.Logo && <Image style={styles.Image} source={props.source} />}
-        {props.BackArrow && (
+        {props.Back && (
           <Pressable
-            android_ripple={{color: Colors.Main}}
+            android_ripple={GlobalStyle.Yellow_Ripple}
             onPress={() => navigation.goBack()}
             style={styles.arrowBox}>
-            <Ionicons name="arrow-back" color={Colors.Main} size={scale(18)} />
+            <Ionicons name="arrow-back" color={Colors.White} size={scale(18)} />
           </Pressable>
         )}
-        {props.Search && (
-          <Feather name="search" color={Colors.Main} size={scale(20)} />
-        )}
-        {props.Title && (
-          <Text style={[styles.Text, props.TextRestyle]}>{props.Text}</Text>
-        )}
+          <Text style={[GlobalStyle.TextShadow,styles.Text, props.TextRestyle]}>{props.Title}</Text>
       </View>
 
       <View style={GlobalStyle.Row}>
-        {props.NoSearch ? null : (
-          <TouchableOpacity onPress={() => navigation.navigate('Search')}>
+        {props.setting && (
+          <TouchableOpacity onPress={() => navigation.navigate('setting')}>
             <Feather
-              style={{marginHorizontal: scale(10)}}
-              name="search"
+              name="settings"
               size={scale(20)}
               color={Colors.White}
             />
           </TouchableOpacity>
         )}
-
-        {props.Notification ? (
-          <TouchableOpacity onPress={() => navigation.navigate('Alert')}>
-            <Ionicons
-              name="notifications-outline"
-              size={scale(20)}
-              color={Colors.White}
-            />
-            <View
-              style={[
-                styles.Dot,
-                {
-                  backgroundColor: notification
-                    ? notification.length > 0
-                      ? 'red'
-                      : Colors.Non
-                    : Colors.Non,
-                },
-              ]}
-            />
-          </TouchableOpacity>
-        ) : null}
       </View>
-      {props.edit ? (
+      {props.edit && (
         <TouchableOpacity onPress={props.editOnPress} activeOpacity={0.6}>
           <Text style={styles.editText}>{props.editText}</Text>
         </TouchableOpacity>
-      ) : null}
+      )}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   Container: {
-    justifyContent: 'space-between',
     paddingVertical: moderateVerticalScale(20),
-    paddingHorizontal: moderateScale(20),
+    paddingHorizontal: moderateScale(16),
   },
   arrowBox: {
-    borderWidth: scale(1.3),
     borderRadius: scale(5),
-    borderColor: Colors.Main,
     paddingHorizontal: 2,
-    paddingVertical: 1,
+    paddingVertical: 2,
+    marginRight:scale(10),
+    overflow:'hidden'
   },
   Text: {
-    fontFamily: Font.Gilroy700,
+    fontFamily: Font.Work600,
     fontSize: scale(17),
-    paddingHorizontal: moderateScale(15),
+    paddingRight: moderateScale(15),
     color: Colors.White,
     textAlignVertical: 'center',
+    textTransform:'capitalize'
   },
   Image: {
     width: scale(22),
@@ -119,14 +91,6 @@ const styles = StyleSheet.create({
     color: Colors.White,
     fontFamily: Font.Poppins500,
     fontSize: scale(12),
-  },
-  Dot: {
-    width: scale(5),
-    aspectRatio: 1 / 1,
-    position: 'absolute',
-    right: 3,
-    top: 2,
-    borderRadius: 100,
   },
 });
 

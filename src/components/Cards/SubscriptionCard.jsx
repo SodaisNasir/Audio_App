@@ -4,9 +4,11 @@ import {ms, mvs, s, vs} from 'react-native-size-matters';
 import {Colors} from '../../utils/Colors';
 import {Font} from '../../utils/font';
 import CustomButton from '../CustomButton';
+import { useNavigation } from '@react-navigation/native';
 
 const {width, height} = Dimensions.get('screen');
 const SubscriptionCard = ({data}) => {
+  const navigation = useNavigation()
   return (
     <>
       <View style={styles.MainContainer}>
@@ -21,15 +23,15 @@ const SubscriptionCard = ({data}) => {
           <Text style={styles.time}>Books that make you great</Text>
           <Text style={styles.Monthly}>Monthly</Text>
           <Text style={[styles.desc, {color: Colors.Black}]}>
-            World class book for your personal groth
+            World class book for your personal growth
           </Text>
-          <CustomButton title={'title'} containerStyle={styles.BtnRestyle} />
+          <CustomButton title={'Continue'} containerStyle={styles.BtnRestyle} onPress={() => navigation.navigate('login')} />
         </View>
       </View>
       <View>
         <View style={styles.descBox}>
           <Text style={styles.desc}>
-            World class book for your personal groth
+            World class book for your personal growth
           </Text>
         </View>
       </View>
@@ -80,7 +82,6 @@ const styles = StyleSheet.create({
   },
 
   BtnRestyle: {
-    borderRadius: 100,
     width: `85%`,
     height: vs(45),
     marginTop: vs(30),

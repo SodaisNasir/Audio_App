@@ -1,8 +1,8 @@
-import React, { useState, useRef } from 'react';
-import { StyleSheet, Text, Pressable, Image, Animated } from 'react-native';
-import { scale, verticalScale } from 'react-native-size-matters';
-import { Font } from '../utils/font';
-import { Colors } from '../utils/Colors';
+import React, {useState, useRef} from 'react';
+import {StyleSheet, Text, Pressable, Image, Animated} from 'react-native';
+import {scale, verticalScale} from 'react-native-size-matters';
+import {Font} from '../utils/font';
+import {Colors} from '../utils/Colors';
 
 const CustomButton = props => {
   const [isPressed, setIsPressed] = useState(false);
@@ -33,14 +33,16 @@ const CustomButton = props => {
       onPressOut={handlePressOut}
       style={[
         styles.containerStyle,
-        { transform: [{ scale: !isPressed ? 0.9 : scaleValue.__getValue() }] },
+        {
+          transform: [{scale: isPressed ? 0.95 : scaleValue.__getValue()}],
+          opacity: isPressed ? 0.6 : 1,
+        },
         props.containerStyle,
-      ]}
-    >
+      ]}>
       {props.google && (
         <Image
           style={styles.Image}
-          resizeMode='contain'
+          resizeMode="contain"
           source={require('../assets/image/Icons/google.png')}
         />
       )}
@@ -65,7 +67,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   containerPressed: {
-    transform: [{ scale: 0.90 }],
+    transform: [{scale: 0.9}],
   },
   font: {
     color: Colors.White,

@@ -15,10 +15,11 @@ const CustomLotti = ({
   return (
     <Modal
       visible={isVisible}
+      statusBarTranslucent
       style={[GlobalStyle.MainModal, { backgroundColor: 'rgba(0,0,0,0.8)' }]}>
-      <SafeAreaView style={[GlobalStyle.ModalContainer, { backgroundColor: Colors.Sky, }]}>
+      <SafeAreaView style={[GlobalStyle.ModalContainer, { backgroundColor: Colors.Main }]}>
         <LottieView autoPlay style={GlobalStyle.LottieView} source={source} />
-        <Text style={[GlobalStyle.ModalText, TextRestyle]}>{Title}</Text>
+        <Text style={[GlobalStyle.ModalText, TextRestyle,{color:Colors.White}]}>{Title}</Text>
 
       </SafeAreaView>
     </Modal>

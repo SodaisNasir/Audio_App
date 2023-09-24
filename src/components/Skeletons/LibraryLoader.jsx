@@ -2,14 +2,19 @@ import React from 'react';
 import { scale, verticalScale } from 'react-native-size-matters';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
 import { Colors } from '../../utils/Colors';
+import { Dimensions } from 'react-native';
 
-const AlertLoader = () => {
+const LibraryLoader = () => {
+  const { width, height } = Dimensions.get('screen');
+
     return (
         <SkeletonPlaceholder
-            speed={1350}
+        speed={2400}
             borderRadius={scale(20)}
             highlightColor={Colors.Main}
-            backgroundColor={Colors.Ash}>
+            shimmerWidth={500}
+            angle={100}
+            backgroundColor={Colors.ThemeCream}>
             <SkeletonPlaceholder.Item flexDirection="row" alignItems="center">
                 <SkeletonPlaceholder.Item
                     width={'90%'}
@@ -24,4 +29,4 @@ const AlertLoader = () => {
     )
 }
 
-export default AlertLoader
+export default LibraryLoader

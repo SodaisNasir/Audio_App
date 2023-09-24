@@ -10,10 +10,12 @@ const Skeleton = ({ ChangeBorderRadius }) => {
 
   return (
     <SkeletonPlaceholder
-      speed={1350}
+      speed={2400}
       borderRadius={ChangeBorderRadius ? scale(350) : scale(10)}
       highlightColor={Colors.Main}
-      backgroundColor={Colors.ThemeCream}>
+    shimmerWidth={500}
+    angle={100}
+backgroundColor={Colors.ThemeCream}>
       <SkeletonPlaceholder.Item marginTop={verticalScale(5)}>
         <SkeletonPlaceholder.Item
           width={tab ? width / 3.2 : width / 2.2}

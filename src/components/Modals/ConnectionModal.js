@@ -1,13 +1,12 @@
-import { StyleSheet, Text, View } from "react-native";
 import React, { useState, useEffect } from "react";
+import { StyleSheet, Text, View } from "react-native";
 import { scale, verticalScale } from "react-native-size-matters";
-import Modal from "react-native-modal";
-
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-import NetInfo from "@react-native-community/netinfo";
 import { Colors } from "../../utils/Colors";
 import { Font } from "../../utils/font";
 
+import Modal from "react-native-modal";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import NetInfo from "@react-native-community/netinfo";
 
 const ConnectionModal = () => {
   const [isConnected, setIsConnected] = useState(false);
@@ -29,6 +28,7 @@ const ConnectionModal = () => {
     <Modal
       backdropOpacity={0.3}
       isVisible={isConnected}
+      statusBarTranslucent
       onBackdropPress={() => setIsConnected(false)}
       animationIn="fadeInUpBig"
       animationInTiming={400}

@@ -54,8 +54,8 @@ const Subscription = () => {
           dotsLength={SubscriptionData?.length}
           activeDotIndex={activeSlide}
           dotStyle={styles.DotStyle}
-          inactiveDotOpacity={0.4}
-          inactiveDotScale={0.6}
+          inactiveDotOpacity={0.3}
+          inactiveDotScale={0.5}
         />
       </View>
     </ImageBackground>
@@ -83,11 +83,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   DotStyle: {
-    width: s(10),
-    height: s(10),
+    width: s(12),
+    height: s(12),
     borderRadius: s(10),
     marginHorizontal: s(10),
-    backgroundColor: Colors.White,
+    backgroundColor: Colors.Yellow,
   },
 });
 

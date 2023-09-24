@@ -68,8 +68,8 @@ const OTP = ({navigation}) => {
   return (
     <BackgroundImage source={require('../../assets/image/Backgrounds/otp.jpg')}>
       <DoubleText
-        first="Create account"
-        second="It's free and easy to set up !"
+        first="Otp has send"
+        second="Check your email for otp (1234)"
       />
       <View style={{height: '5%'}} />
       <CodeField

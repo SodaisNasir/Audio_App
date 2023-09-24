@@ -18,7 +18,7 @@ const CustomInput = forwardRef((props, ref) => {
     rules: props.rules,
   });
   return (
-    <View style={styles.Container}>
+    <View style={[styles.Container,props.Container]}>
       <TextInput
         onFocus={props.onFocus}
         value={field.value}

@@ -8,7 +8,7 @@ import ReactNativeModal from 'react-native-modal'
 const IndicatorModal = ({Visible}) => {
   return (
     <View style={styles.container}>
-      <ReactNativeModal isVisible={Visible} style={GlobalStyle.MainModal}>
+      <ReactNativeModal statusBarTranslucent isVisible={Visible} style={GlobalStyle.MainModal}>
           <ActivityIndicator size={scale(50)} color={Colors.White} />
         </ReactNativeModal>
     </View>

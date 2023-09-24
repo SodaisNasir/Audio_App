@@ -11,7 +11,7 @@ import {
 import {GlobalStyle} from '../../../Constants/GlobalStyle';
 import {useFocusEffect} from '@react-navigation/native';
 import Header from '../../../components/Header/Header';
-import {scale, vs} from 'react-native-size-matters';
+import {scale} from 'react-native-size-matters';
 import {Font} from '../../../utils/font';
 import {Colors} from '../../../utils/Colors';
 import {Category} from '../../../Constants/Data';
@@ -29,11 +29,11 @@ const Dashboard = ({navigation}) => {
   );
   setTimeout(() => {
     setLoad(false);
-  }, 2000);
+  }, 5000);
   return (
     <SafeAreaView style={GlobalStyle.Container}>
       <StatusBar backgroundColor={Colors.Main} />
-      <Header Notification />
+      <Header Title='Dashboard' setting />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={GlobalStyle.Padding}>
           <Text style={styles.Title}>Top Listens from category</Text>
@@ -50,16 +50,18 @@ const Dashboard = ({navigation}) => {
               <Skeleton />
             </>
           ) : (
-            Category?.map((item, index) => (
+            Category?.map(item  => (
               <CategoryCard
                 data={item}
                 key={item.id}
-                onPress={() => console.log(index)}
+                onPress={() => navigation.navigate('category_detail', {
+                  item:item,
+                })}
               />
             ))
           )}
         </View>
-        <View style={{height: vs(55)}} />
+        <View style={GlobalStyle.Height}/>
       </ScrollView>
     </SafeAreaView>
   );

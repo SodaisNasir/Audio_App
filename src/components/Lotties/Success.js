@@ -9,6 +9,7 @@ const Success = ({ message, isVisible }) => {
   return (
     <Modal
       visible={isVisible}
+      statusBarTranslucent
       style={[GlobalStyle.MainModal, { backgroundColor: 'rgba(0,0,0,0.8)' }]}>
       <SafeAreaView style={GlobalStyle.ModalContainer}>
         <LottieView
