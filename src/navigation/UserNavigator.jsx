@@ -13,6 +13,7 @@ import Profile from '../screens/Users/Profile/UserProfile';
 import Library from '../screens/Users/Library/UserLibrary';
 import Setting from '../screens/Users/Setting/UserSetting';
 import Language from '../screens/Users/Setting/Language';
+import Term from '../screens/Users/Setting/Term';
 
 import {ms, s} from 'react-native-size-matters';
 import {Colors} from '../utils/Colors';
@@ -97,6 +98,7 @@ function AllDashboard() {
       <Stack.Screen name="dashboard" component={Dashboard} />
       <Stack.Screen name="setting" component={Setting} />
       <Stack.Screen name="language" component={Language} />
+      <Stack.Screen name="term" component={Term} />
       <Stack.Screen name="category_detail" component={Category_Detail} />
       <Stack.Screen name="singleBookDetail" component={SingleBookDetail} />
       <Stack.Screen name="player" component={Player} />

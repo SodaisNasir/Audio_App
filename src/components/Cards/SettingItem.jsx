@@ -8,6 +8,8 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import {Font} from '../../utils/font';
 import {Colors} from '../../utils/Colors';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Foundation from 'react-native-vector-icons/Foundation';
+import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 
 const SettingItem = props => {
   return (
@@ -22,6 +24,12 @@ const SettingItem = props => {
           )}
         {props.delete && (
           <MaterialCommunityIcons name="delete-alert" size={scale(20)} color={Colors.White} />
+          )}
+        {props.Term && (
+          <Foundation name="page-filled" size={scale(20)} color={Colors.White} />
+          )}
+        {props.privacy && (
+          <FontAwesome6 name="shield" size={scale(20)} color={Colors.White} />
           )}
       <Text style={styles.Text}>{props.Title}</Text>
           </View>

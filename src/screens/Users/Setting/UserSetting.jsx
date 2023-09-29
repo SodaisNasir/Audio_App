@@ -32,6 +32,20 @@ const UserSetting = ({navigation}) => {
           language
         />
       <SettingItem
+          onPress={() => navigation.navigate('term',{
+            type:'term'
+          })}
+          Title="Term and condition"
+          Term
+        />
+      <SettingItem
+         onPress={() => navigation.navigate('term',{
+          type:'privacy'
+        })}
+          Title="privacy policy"
+          privacy
+        />
+      <SettingItem
           onPress={() => setDeleteModalVisible(true)}
           Title="delete account"
           delete
