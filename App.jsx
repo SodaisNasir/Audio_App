@@ -6,6 +6,7 @@ import UserNavigator from './src/navigation/UserNavigator';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {USER_DETAILS} from './src/redux/reducer/Holder';
 import Toast from 'react-native-simple-toast';
+import SplashScreen from 'react-native-splash-screen'
 const App = () => {
   const dispatch = useDispatch();
 
@@ -25,6 +26,12 @@ const App = () => {
   useEffect(() => {
     checkStatus();
   }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      SplashScreen.hide();
+    }, 300);
+  }, [])
 
   setTimeout(() => {
     setLoading(false);
