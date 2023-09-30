@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, { useCallback, useState,useEffect } from 'react';
 import {
   StyleSheet,
   Text,
@@ -10,48 +10,67 @@ import {
   FlatList,
 } from 'react-native';
 import Modal from 'react-native-modal';
-import {GlobalStyle} from '../../../Constants/GlobalStyle';
-import {useFocusEffect} from '@react-navigation/native';
+import { GlobalStyle } from '../../../Constants/GlobalStyle';
+import { useFocusEffect } from '@react-navigation/native';
 import LibraryCard from '../../../components/Cards/LibraryCard';
-import {Category, sorting} from '../../../Constants/Data';
-import {Colors} from '../../../utils/Colors';
+import { Category, sorting } from '../../../Constants/Data';
+import { Colors } from '../../../utils/Colors';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {ms, s, vs, mvs} from 'react-native-size-matters';
-import {Font} from '../../../utils/font';
+import { ms, s, vs, mvs } from 'react-native-size-matters';
+import { Font } from '../../../utils/font';
 import LibraryLoader from '../../../components/Skeletons/LibraryLoader';
+import { useDispatch, useSelector } from 'react-redux';
+import { audio_data } from '../../../redux/actions/UserAction';
 
-const UserLibrary = ({navigation}) => {
-  const [load, setLoad] = useState(true);
+const UserLibrary = ({ navigation }) => {
+  const dispatch = useDispatch()
+  const [load, setLoad] = useState(false);
   const [sort, setSort] = useState(false);
   const [sortValue, setSortValue] = useState('Recent');
+  const [sortedBooks, setSortedBooks] = useState([]); // State for sorted books
 
+  const books = useSelector(state => state.books)
   const onClose = () => {
     setSort(false);
   };
   const handleSort = item => {
     setSortValue(item.title);
-    if (item.title == 'Recent') {
-      Category.reverse();
-    } else {
-      Category.sort();
+    let newSortedBooks = [...books]; // Create a copy of the books array
+    switch (item.title) {
+      case 'Recent':
+        newSortedBooks.sort((a, b) => a.created_at - b.created_at);
+        break;
+      case 'A-Z':
+        newSortedBooks.sort((a, b) => a.title.localeCompare(b.title))
+        break;
+      case 'Z-A':
+        newSortedBooks.sort((a, b) => b.title.localeCompare(a.title))
+        break;
+      default:
+        break;
     }
     onClose();
+    setSortedBooks(newSortedBooks); // Update the state with the sorted array
+    console.log(newSortedBooks)
   };
+
 
   useFocusEffect(
     useCallback(() => {
       navigation.getParent()?.setOptions({
         tabBarStyle: GlobalStyle.showBar,
       });
+      dispatch(audio_data(setLoad));
     }, []),
   );
-  setTimeout(() => {
-    setLoad(false);
-  }, 4000);
+  useEffect(() => {
+    handleSort({ title: 'Recent' });
+  }, []);
+  
   return (
     <SafeAreaView style={GlobalStyle.Container}>
       <View style={[GlobalStyle.Space_Between, styles.TopBox]}>
-        <Text style={styles.TopTitle}>{Category?.length} titles</Text>
+        <Text style={styles.TopTitle}>{books?.length} titles</Text>
         <TouchableOpacity style={GlobalStyle.Row} onPress={() => setSort(true)}>
           <MaterialCommunityIcons
             name="sort"
@@ -70,11 +89,11 @@ const UserLibrary = ({navigation}) => {
       ) : (
         <>
           <ScrollView showsVerticalScrollIndicator={false}>
-            {Category?.map(item => (
+          {sortedBooks.map(item => (
               <LibraryCard
                 data={item}
                 key={item.id}
-                onPress={() => navigation.navigate('player', {item: item})}
+                onPress={() => navigation.navigate('player', { item: item })}
               />
             ))}
             <View style={GlobalStyle.Height} />
@@ -92,10 +111,10 @@ const UserLibrary = ({navigation}) => {
         <View style={styles.Container}>
           <FlatList
             data={sorting}
-            renderItem={({item, index}) => {
+            renderItem={({ item, index }) => {
               return (
                 <Pressable
-                  style={{overflow: 'hidden'}}
+                  style={{ overflow: 'hidden' }}
                   android_ripple={GlobalStyle.Yellow_Ripple}
                   onPress={() => handleSort(item)}
                   key={index}>
@@ -124,7 +143,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 0,
     top: '7%',
-    backgroundColor: Colors.White,
     width: '45%',
     paddingVertical: mvs(10),
     borderRadius: s(10),

@@ -1,9 +1,11 @@
 export const USER_DETAILS = 'USER_DETAILS';
 export const OTP = 'OTP';
+export const BOOKS = 'BOOKS';
 
 const initial_state = {
   userDetails: null,
   otp: null,
+  books: null,
 };
 
 const holderReducer = (state = initial_state, action) => {
@@ -17,6 +19,11 @@ const holderReducer = (state = initial_state, action) => {
       return {
         ...state,
         otp: action.payload,
+      };
+    case BOOKS:
+      return {
+        ...state,
+        books: action.payload,
       };
     default: {
       return state;

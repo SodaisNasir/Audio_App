@@ -55,8 +55,8 @@ const LibraryCard = ({data, onPress}) => {
       </View>
       <View style={styles.TextView}>
       <Text style={styles.title}>{data.title}</Text>
-      <Text style={styles.subs}>by {data.author}</Text>
-      <Text style={styles.subs}>Narrated by {data.author}</Text>
+      <Text style={styles.subs}>by {data.artist}</Text>
+      <Text style={styles.subs}>Narrated by {data.artist}</Text>
         <View style={GlobalStyle.Row}>
           <Progress.Bar
             progress={data.progress}

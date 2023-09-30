@@ -131,6 +131,10 @@ export const Category = [
 export const sorting = [
   {title: 'Recent', id: 1},
   {title: 'timing', id: 2},
+  // {title: 'title', id: 3},
+  // {title: 'Recently Added', id: 4},
+  // {title: 'Artist', id: 5},
+  // {title: 'Album', id: 6},
 ];
 export const LanguageData = [
   {title: 'english', id: 1},
