@@ -55,11 +55,10 @@ const Player = ({navigation, route}) => {
         <Text
           numberOfLines={2}
           style={[GlobalStyle.TextShadow, styles.book_name]}>
-          {item.book_name}
+          {item.title}
         </Text>
-        <Text
-          style={[GlobalStyle.TextShadow, styles.book_name]}>
-          by  •  {item.author}
+        <Text style={[GlobalStyle.TextShadow, styles.book_name]}>
+          by • {item.artist}
         </Text>
         <Slider
           style={{width: '100%', marginVertical: vs(20)}}
@@ -83,7 +82,7 @@ const Player = ({navigation, route}) => {
           </Text>
           <Text style={[GlobalStyle.TextShadow, styles.time]}>-1:0.6:15</Text>
         </View>
-        <View style={[GlobalStyle.Space_Between,{marginTop:'10%'}]}>
+        <View style={[GlobalStyle.Space_Between, {marginTop: '10%'}]}>
           <Ionicons name="ios-shuffle" size={s(25)} color={Colors.Non} />
           <TouchableOpacity>
             <FontAwesome5
@@ -93,7 +92,9 @@ const Player = ({navigation, route}) => {
             />
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.playNPause} onPress={() => setPlay(!play)}>
+          <TouchableOpacity
+            style={styles.playNPause}
+            onPress={() => setPlay(!play)}>
             <Ionicons
               name={play ? 'pause' : 'play'}
               color={Colors.Black}
@@ -139,7 +140,7 @@ const styles = StyleSheet.create({
     fontSize: s(12),
     color: Colors.White,
   },
-  playNPause:{
+  playNPause: {
     backgroundColor: Colors.White,
     height: s(50),
     width: s(50),
@@ -147,6 +148,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 100,
     paddingLeft: 2,
-  }
+  },
 });
 export default Player;

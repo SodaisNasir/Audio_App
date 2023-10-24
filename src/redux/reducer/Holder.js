@@ -5,7 +5,7 @@ export const BOOKS = 'BOOKS';
 const initial_state = {
   userDetails: null,
   otp: null,
-  books: null,
+  books: [],
 };
 
 const holderReducer = (state = initial_state, action) => {

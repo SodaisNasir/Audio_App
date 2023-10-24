@@ -20,13 +20,13 @@ import Loading from '../../../components/Lotties/Loading';
 import ImagePickerModal from '../../../components/Modals/ImagePickerModal';
 import Toast from 'react-native-simple-toast';
 import {useSelector} from 'react-redux';
-import { EmailRegix, NameRegix } from '../../../utils/url';
+import {EmailRegix, NameRegix} from '../../../utils/url';
 import CustomInput from '../../../components/Inputs/CustomInput';
 import Validation from '../../../components/Validation';
 
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
-import Zocial from 'react-native-vector-icons/Zocial'
-import { Font } from '../../../utils/font';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import Zocial from 'react-native-vector-icons/Zocial';
+import {Font} from '../../../utils/font';
 import CustomButton from '../../../components/CustomButton';
 
 const UserProfile = ({navigation}) => {
@@ -38,10 +38,10 @@ const UserProfile = ({navigation}) => {
   const [pickerModal, setPickerModal] = useState(false);
   const [load, setLoad] = useState(false);
 
-
   const onSubmit = () => {
-  console.log('submit')}
-    const pickPhoto = () => {
+    console.log('submit');
+  };
+  const pickPhoto = () => {
     let options = {
       storageOptions: {
         mediaType: 'photo',
@@ -128,8 +128,11 @@ const UserProfile = ({navigation}) => {
       />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={GlobalStyle.Padding}>
-        <TouchableOpacity activeOpacity={1} style={styles.DpBox} onPress={ImagePress}>
-          {/* {userDetails?.image && saveImage == null || undefined ? (
+          <TouchableOpacity
+            activeOpacity={1}
+            style={styles.DpBox}
+            onPress={ImagePress}>
+            {/* {userDetails?.image && saveImage == null || undefined ? (
             <Image
               resizeMode="cover"
               style={GlobalStyle.Image}
@@ -144,7 +147,7 @@ const UserProfile = ({navigation}) => {
               }
             />
           )} */}
-          <Image
+            <Image
               resizeMode="cover"
               style={GlobalStyle.Image}
               source={
@@ -153,8 +156,8 @@ const UserProfile = ({navigation}) => {
                   : require('../../../assets/image/selectimage.png')
               }
             />
-        </TouchableOpacity>
-        <View style={GlobalStyle.Vertical_Space} />
+          </TouchableOpacity>
+          <View style={GlobalStyle.Vertical_Space} />
           <View style={GlobalStyle.Row}>
             <FontAwesome5
               name="user-alt"
@@ -162,99 +165,116 @@ const UserProfile = ({navigation}) => {
               color={Colors.White}
             />
             {edit ? (
-                <CustomInput
-                  Container={styles.CustomInputRestyle}
-                  control={control}
-                  keyboardType="default"
-                  name="name"
-                  placeholder="Enter Your Name"
-                  // defaultValue={userDetails.name}
-                  // value={userDetails.name}
-                  rules={{
-                    required: 'User Name is required',
-                    pattern: {
-                      value: NameRegix,
-                      message: 'Enter a User Name',
-                    },
-                  }}
-                />
+              <CustomInput
+                Container={styles.CustomInputRestyle}
+                control={control}
+                keyboardType="default"
+                name="name"
+                placeholder="Enter Your Name"
+                // defaultValue={userDetails.name}
+                // value={userDetails.name}
+                rules={{
+                  required: 'User Name is required',
+                  pattern: {
+                    value: NameRegix,
+                    message: 'Enter a User Name',
+                  },
+                }}
+              />
             ) : (
               <View style={styles.TextBox}>
-              <Text style={styles.Text}>{`Emma watson`}</Text>
+                <Text style={styles.Text}>{`Emma watson`}</Text>
               </View>
             )}
           </View>
-            {errors.name && <Validation restyle={styles.ValidationRestyle} title={errors.name.message} />}
-        
+          {edit && errors.name && (
+            <Validation
+              restyle={styles.ValidationRestyle}
+              title={errors.name.message}
+            />
+          )}
           <View style={GlobalStyle.Row}>
-          <Zocial name="email" size={scale(20)} color={Colors.White} />
+            <Zocial name="email" size={scale(20)} color={Colors.White} />
             {edit ? (
-                <CustomInput
-                  Container={styles.CustomInputRestyle}
-                  control={control}
-                  keyboardType="email-address"
-                  name="email"
-                  placeholder="Enter Your Email"
-                  // defaultValue={userDetails.name}
-                  // value={userDetails.name}
-                  rules={{
-                    required: '*Email is required',
-                    pattern: {
-                      value: EmailRegix,
-                      message: 'Email is not valid',
-                    },
-                  }}
-                />
-                ) : (
-                  <View style={styles.TextBox}>
-              <Text style={styles.Text}>{`user@gmail.com`}</Text>
-              </View>
-            )}
-        </View>
-            {errors.email && <Validation restyle={styles.ValidationRestyle} title={errors.email.message} />}
-          <View style={GlobalStyle.Row}>
-          <FontAwesome5  name="phone-alt" size={scale(20)} color={Colors.White} />
-
-            {edit ? (
-                <CustomInput
-                  Container={styles.CustomInputRestyle}
-                  control={control}
-                  keyboardType="number-pad"
-                  name="phone"
-                  placeholder="Enter Phone Number"
-                  // defaultValue={userDetails.name}
-                  // value={userDetails.name}
-                  rules={{
-                    required: '*Phone Number is required',
-                    minLength: {
-                      value: 10,
-                      message: '*Phone Number is not valid',
-                    },
-                    maxLength: {
-                      value: 16,
-                      message: '*Phone Number is not valid',
-                    },
-                  }}
-                />
-                ) : (
-                  <View style={styles.TextBox}>
-              <Text style={styles.Text}>{`032231237678`}</Text>
+              <CustomInput
+                Container={styles.CustomInputRestyle}
+                control={control}
+                keyboardType="email-address"
+                name="email"
+                placeholder="Enter Your Email"
+                // defaultValue={userDetails.name}
+                // value={userDetails.name}
+                rules={{
+                  required: '*Email is required',
+                  pattern: {
+                    value: EmailRegix,
+                    message: 'Email is not valid',
+                  },
+                }}
+              />
+            ) : (
+              <View style={styles.TextBox}>
+                <Text style={styles.Text}>{`user@gmail.com`}</Text>
               </View>
             )}
           </View>
-            {errors.phone && <Validation restyle={styles.ValidationRestyle} title={errors.phone.message} />}
+          {edit && errors.email && (
+            <Validation
+              restyle={styles.ValidationRestyle}
+              title={errors.email.message}
+            />
+          )}
+          <View style={GlobalStyle.Row}>
+            <FontAwesome5
+              name="phone-alt"
+              size={scale(20)}
+              color={Colors.White}
+            />
 
-        {edit && (
-          <CustomButton
-            onPress={handleSubmit(onSubmit)}
-            title="Save Changes"
-            containerStyle={{
-              marginTop: verticalScale(40),
-              width:'90%'
-            }}
-          />
-        )}
-        <View style={GlobalStyle.Height} />
+            {edit ? (
+              <CustomInput
+                Container={styles.CustomInputRestyle}
+                control={control}
+                keyboardType="number-pad"
+                name="phone"
+                placeholder="Enter Phone Number"
+                // defaultValue={userDetails.name}
+                // value={userDetails.name}
+                rules={{
+                  required: '*Phone Number is required',
+                  minLength: {
+                    value: 10,
+                    message: '*Phone Number is not valid',
+                  },
+                  maxLength: {
+                    value: 16,
+                    message: '*Phone Number is not valid',
+                  },
+                }}
+              />
+            ) : (
+              <View style={styles.TextBox}>
+                <Text style={styles.Text}>{`032231237678`}</Text>
+              </View>
+            )}
+          </View>
+          {edit && errors.phone && (
+            <Validation
+              restyle={styles.ValidationRestyle}
+              title={errors.phone.message}
+            />
+          )}
+          {edit && (
+            <CustomButton
+              onPress={handleSubmit(onSubmit)}
+              title="Save Changes"
+              containerStyle={{
+                marginTop: verticalScale(40),
+                width: '90%',
+              }}
+            />
+          )}
+          <View style={GlobalStyle.Height} />
         </View>
       </ScrollView>
       <Loading isVisible={load} />
@@ -291,23 +311,23 @@ const styles = StyleSheet.create({
     width: '85%',
     marginLeft: scale(15),
     paddingHorizontal: 0,
-    marginTop:verticalScale(8)
+    marginTop: verticalScale(8),
   },
   Text: {
     color: Colors.White,
     fontFamily: Font.Work500,
     fontSize: scale(16),
   },
-  TextBox:{
+  TextBox: {
     marginTop: verticalScale(25),
     paddingHorizontal: moderateScale(10),
     height: verticalScale(45),
     borderWidth: scale(1),
   },
-  ValidationRestyle:{
-    marginLeft:scale(40),
-    marginTop:verticalScale(7),
-    marginBottom:verticalScale(-10)
-  }
+  ValidationRestyle: {
+    marginLeft: scale(40),
+    marginTop: verticalScale(7),
+    marginBottom: verticalScale(-10),
+  },
 });
 export default UserProfile;

@@ -1,4 +1,4 @@
-import React, { useCallback, useState,useEffect } from 'react';
+import React, {useCallback, useState, useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -10,50 +10,51 @@ import {
   FlatList,
 } from 'react-native';
 import Modal from 'react-native-modal';
-import { GlobalStyle } from '../../../Constants/GlobalStyle';
-import { useFocusEffect } from '@react-navigation/native';
+import {GlobalStyle} from '../../../Constants/GlobalStyle';
+import {useFocusEffect} from '@react-navigation/native';
 import LibraryCard from '../../../components/Cards/LibraryCard';
-import { Category, sorting } from '../../../Constants/Data';
-import { Colors } from '../../../utils/Colors';
+import {Category, sorting} from '../../../Constants/Data';
+import {Colors} from '../../../utils/Colors';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { ms, s, vs, mvs } from 'react-native-size-matters';
-import { Font } from '../../../utils/font';
+import {ms, s, vs, mvs} from 'react-native-size-matters';
+import {Font} from '../../../utils/font';
 import LibraryLoader from '../../../components/Skeletons/LibraryLoader';
-import { useDispatch, useSelector } from 'react-redux';
-import { audio_data } from '../../../redux/actions/UserAction';
+import {useDispatch, useSelector} from 'react-redux';
+import {audio_data} from '../../../redux/actions/UserAction';
+import SortingModal from '../../../components/Modals/SortingModal';
 
-const UserLibrary = ({ navigation }) => {
-  const dispatch = useDispatch()
+const UserLibrary = ({navigation}) => {
+  const dispatch = useDispatch();
+  const books = useSelector(state => state.books);
+
   const [load, setLoad] = useState(false);
   const [sort, setSort] = useState(false);
   const [sortValue, setSortValue] = useState('Recent');
   const [sortedBooks, setSortedBooks] = useState([]); // State for sorted books
-
-  const books = useSelector(state => state.books)
+  const [getItem, setGetitem] = useState('');
   const onClose = () => {
     setSort(false);
   };
-  const handleSort = item => {
-    setSortValue(item.title);
-    let newSortedBooks = [...books]; // Create a copy of the books array
-    switch (item.title) {
-      case 'Recent':
-        newSortedBooks.sort((a, b) => a.created_at - b.created_at);
-        break;
-      case 'A-Z':
-        newSortedBooks.sort((a, b) => a.title.localeCompare(b.title))
-        break;
-      case 'Z-A':
-        newSortedBooks.sort((a, b) => b.title.localeCompare(a.title))
-        break;
-      default:
-        break;
-    }
-    onClose();
-    setSortedBooks(newSortedBooks); // Update the state with the sorted array
-    console.log(newSortedBooks)
-  };
-
+  // const handleSort = item => {
+  //   setSortValue(item.title);
+  //   let newSortedBooks = [...books]; // Create a copy of the books array
+  //   switch (item.title) {
+  //     case 'Recent':
+  //       newSortedBooks.sort((a, b) => a.created_at - b.created_at);
+  //       break;
+  //     case 'A-Z':
+  //       newSortedBooks.sort((a, b) => a.title.localeCompare(b.title));
+  //       break;
+  //     case 'Z-A':
+  //       newSortedBooks.sort((a, b) => b.title.localeCompare(a.title));
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  //   onClose();
+  //   setSortedBooks(newSortedBooks);
+  //   console.log(newSortedBooks);
+  // };
 
   useFocusEffect(
     useCallback(() => {
@@ -63,10 +64,10 @@ const UserLibrary = ({ navigation }) => {
       dispatch(audio_data(setLoad));
     }, []),
   );
-  useEffect(() => {
-    handleSort({ title: 'Recent' });
-  }, []);
-  
+  // useEffect(() => {
+  //   handleSort({title: 'Recent'});
+  // }, []);
+
   return (
     <SafeAreaView style={GlobalStyle.Container}>
       <View style={[GlobalStyle.Space_Between, styles.TopBox]}>
@@ -89,42 +90,33 @@ const UserLibrary = ({ navigation }) => {
       ) : (
         <>
           <ScrollView showsVerticalScrollIndicator={false}>
-          {sortedBooks.map(item => (
+            {books?.map(item => (
               <LibraryCard
                 data={item}
                 key={item.id}
-                onPress={() => navigation.navigate('player', { item: item })}
+                onPress={() => navigation.navigate('player', {item: item})}
               />
             ))}
             <View style={GlobalStyle.Height} />
           </ScrollView>
         </>
       )}
-      <Modal
-        testID={'modal'}
-        backdropOpacity={0}
-        onBackdropPress={onClose}
-        isVisible={sort}
-        onBackButtonPress={onClose}
-        animationIn={'fadeIn'}
-        animationOut={'fadeOut'}>
-        <View style={styles.Container}>
-          <FlatList
-            data={sorting}
-            renderItem={({ item, index }) => {
-              return (
-                <Pressable
-                  style={{ overflow: 'hidden' }}
-                  android_ripple={GlobalStyle.Yellow_Ripple}
-                  onPress={() => handleSort(item)}
-                  key={index}>
-                  <Text style={styles.title}>{item.title}</Text>
-                </Pressable>
-              );
-            }}
-          />
-        </View>
-      </Modal>
+      <SortingModal visible={sort} onClose={onClose}>
+        <FlatList
+          data={sorting}
+          renderItem={({item, index}) => {
+            return (
+              <Pressable
+                style={{overflow: 'hidden'}}
+                android_ripple={GlobalStyle.Yellow_Ripple}
+                // onPress={() => handleSort(item)}
+                key={index}>
+                <Text style={styles.title}>{item.title}</Text>
+              </Pressable>
+            );
+          }}
+        />
+      </SortingModal>
     </SafeAreaView>
   );
 };
@@ -138,24 +130,6 @@ const styles = StyleSheet.create({
   TopBox: {
     marginVertical: vs(10),
     paddingHorizontal: ms(15),
-  },
-  Container: {
-    position: 'absolute',
-    right: 0,
-    top: '7%',
-    width: '45%',
-    paddingVertical: mvs(10),
-    borderRadius: s(10),
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 3,
-    backgroundColor: Colors.White,
-    zIndex: 99,
   },
   title: {
     color: Colors.Main,

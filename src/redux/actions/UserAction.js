@@ -14,6 +14,7 @@ export const audio_data = (load) => {
             if (responseData.success.status == 200) {
                 dispatch({ type: BOOKS, payload: responseData.success.data })
                 load(false)
+                console.log(responseData.success.data)
             } else {
                 Toast.show('catch something went wrong')
                 load(false)
