@@ -1,4 +1,4 @@
-import React, {useCallback, useState,useEffect} from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import {
   StyleSheet,
   Text,
@@ -9,18 +9,18 @@ import {
   Dimensions,
   FlatList,
 } from 'react-native';
-import {GlobalStyle} from '../../../Constants/GlobalStyle';
-import {useFocusEffect} from '@react-navigation/native';
+import { GlobalStyle } from '../../../Constants/GlobalStyle';
+import { useFocusEffect } from '@react-navigation/native';
 import Header from '../../../components/Header/Header';
-import {ms, s, vs} from 'react-native-size-matters';
-import {Colors} from '../../../utils/Colors';
-import {Font} from '../../../utils/font';
+import { ms, s, vs } from 'react-native-size-matters';
+import { Colors } from '../../../utils/Colors';
+import { Font } from '../../../utils/font';
 import DetailBookCard from '../../../components/Cards/DetailBookCard';
-import {Category} from '../../../Constants/Data';
+import { Category } from '../../../Constants/Data';
 
-const {width, height} = Dimensions.get('screen');
-const Category_Detail = ({navigation, route}) => {
-  const {item} = route.params;
+const { width, height } = Dimensions.get('screen');
+const Category_Detail = ({ navigation, route }) => {
+  const { item } = route.params;
   const [load, setLoad] = useState(true);
   useFocusEffect(
     useCallback(() => {
@@ -37,34 +37,34 @@ const Category_Detail = ({navigation, route}) => {
     StatusBar.setBackgroundColor(Colors.Non)
     return () => {
       StatusBar.setTranslucent(false)
-    StatusBar.setBackgroundColor(Colors.Main)
+      StatusBar.setBackgroundColor(Colors.Main)
     }
   }, [])
   return (
-    <View style={GlobalStyle.Trans_Container}>
-      <ImageBackground
+    <View style={[GlobalStyle.Trans_Container, { backgroundColor: Colors.Black, }]}>
+      {/* <ImageBackground
        style={GlobalStyle.Trans_Container}
         blurRadius={200}
-        source={{uri: item.image}}>
-      <Header Title={item.title} c_back Container={{marginTop:vs(20)}} arrowCircleRestyle={{marginTop:0}} />
+        source={{uri: item.image}}> */}
+      <Header Title={item.title} c_back Container={{ marginTop: vs(20) }} arrowCircleRestyle={{ marginTop: 0 }} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.ImageBackground}>
           <ImageBackground
-            style={[GlobalStyle.Image, {justifyContent: 'flex-end'}]}
-            source={{uri: item.image}}>
+            style={[GlobalStyle.Image, { justifyContent: 'flex-end' }]}
+            source={{ uri: item.image }}>
             <Text style={[GlobalStyle.TextShadow, styles.category]}>
               {item.title}
             </Text>
           </ImageBackground>
         </View>
-        <Text style={[styles.category, styles.heading,GlobalStyle.TextShadow]}>
+        <Text style={[styles.category, styles.heading, GlobalStyle.TextShadow]}>
           Best selling in {item.title} category
         </Text>
         <FlatList
           data={Category}
           keyExtractor={item => item.id.toString()}
           horizontal
-          renderItem={({item}) => (
+          renderItem={({ item }) => (
             <DetailBookCard
               data={item}
               onPress={() =>
@@ -76,7 +76,7 @@ const Category_Detail = ({navigation, route}) => {
           )}
         />
       </ScrollView>
-      </ImageBackground>
+      {/* </ImageBackground> */}
     </View>
   );
 };

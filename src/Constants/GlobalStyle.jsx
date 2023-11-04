@@ -6,7 +6,7 @@ import {Font} from '../utils/font';
 export const GlobalStyle = StyleSheet.create({
   Container: {
     flex: 1,
-    backgroundColor: Colors.Main,
+    backgroundColor: Colors.Black,
   },
   Trans_Container: {
     flex: 1,

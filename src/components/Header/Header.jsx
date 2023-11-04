@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
   Pressable,
+  StatusBar,
 } from 'react-native';
 import {
   moderateScale,
@@ -23,6 +24,7 @@ const Header = props => {
  
   return (
     <View style={[styles.Container, props.Container, GlobalStyle.Space_Between]}>
+      {/* <StatusBar backgroundColor={Colors.Black} /> */}
       <View style={GlobalStyle.Row}>
         {props.c_back && (
            <Pressable onPress={() => navigation.goBack()}
@@ -44,9 +46,9 @@ const Header = props => {
 
       <View style={GlobalStyle.Row}>
         {props.setting && (
-          <TouchableOpacity onPress={() => navigation.navigate('setting')}>
+          <TouchableOpacity onPress={() => navigation.navigate('SearchScreen')}>
             <Feather
-              name="settings"
+              name="search"
               size={scale(20)}
               color={Colors.White}
             />

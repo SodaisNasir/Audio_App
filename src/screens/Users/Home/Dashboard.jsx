@@ -32,7 +32,7 @@ const Dashboard = ({navigation}) => {
   }, 5000);
   return (
     <SafeAreaView style={GlobalStyle.Container}>
-      <StatusBar backgroundColor={Colors.Main} />
+      <StatusBar backgroundColor={Colors.Black} />
       <Header Title='Dashboard' setting />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={GlobalStyle.Padding}>

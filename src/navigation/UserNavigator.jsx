@@ -18,6 +18,7 @@ import Term from '../screens/Users/Setting/Term';
 import {ms, s} from 'react-native-size-matters';
 import {Colors} from '../utils/Colors';
 import {Font} from '../utils/font';
+import SearchScreen from '../screens/Users/Home/SearchScreen';
 
 const UserNavigator = () => {
   const Tab = createBottomTabNavigator();
@@ -102,6 +103,7 @@ function AllDashboard() {
       <Stack.Screen name="category_detail" component={Category_Detail} />
       <Stack.Screen name="singleBookDetail" component={SingleBookDetail} />
       <Stack.Screen name="player" component={Player} />
+      <Stack.Screen name="SearchScreen" component={SearchScreen} />
     </Stack.Navigator>
   );
 }

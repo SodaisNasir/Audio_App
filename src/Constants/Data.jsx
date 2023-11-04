@@ -108,7 +108,7 @@ export const Category = [
   {
     author: 'gogo',
     book_name: 'Invisible Man',
-    author: 'gogo',
+    // author: 'gogo',
     title: 'Classic',
     id: 11,
     image:

@@ -19,11 +19,11 @@ const SingleBookDetail = ({navigation, route}) => {
   const {item} = route.params;
   
   return (
-    <View style={GlobalStyle.Trans_Container}>
-      <ImageBackground
+    <View style={[GlobalStyle.Trans_Container, { backgroundColor: Colors.Black, }]}>
+      {/* <ImageBackground
        style={GlobalStyle.Trans_Container}
         blurRadius={200}
-        source={{uri: item.image}}>
+        source={{uri: item.image}}> */}
      <Header c_back />
         <View style={styles.Image}>
           <Image style={GlobalStyle.Image} source={{uri: item.image}} />
@@ -48,7 +48,7 @@ const SingleBookDetail = ({navigation, route}) => {
             {item.title}
         </Text>
       </View>
-      </ImageBackground>
+      {/* </ImageBackground> */}
     </View>
   );
 };
