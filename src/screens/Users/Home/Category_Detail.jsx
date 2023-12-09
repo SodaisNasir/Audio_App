@@ -1,9 +1,8 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState } from 'react';
 import {
   StyleSheet,
   Text,
   View,
-  StatusBar,
   ImageBackground,
   ScrollView,
   Dimensions,
@@ -12,7 +11,7 @@ import {
 import { GlobalStyle } from '../../../Constants/GlobalStyle';
 import { useFocusEffect } from '@react-navigation/native';
 import Header from '../../../components/Header/Header';
-import { ms, s, vs } from 'react-native-size-matters';
+import { s, vs } from 'react-native-size-matters';
 import { Colors } from '../../../utils/Colors';
 import { Font } from '../../../utils/font';
 import DetailBookCard from '../../../components/Cards/DetailBookCard';
@@ -32,21 +31,9 @@ const Category_Detail = ({ navigation, route }) => {
   setTimeout(() => {
     setLoad(false);
   }, 5000);
-  useEffect(() => {
-    StatusBar.setTranslucent(true)
-    StatusBar.setBackgroundColor(Colors.Non)
-    return () => {
-      StatusBar.setTranslucent(false)
-      StatusBar.setBackgroundColor(Colors.Main)
-    }
-  }, [])
   return (
     <View style={[GlobalStyle.Trans_Container, { backgroundColor: Colors.Black, }]}>
-      {/* <ImageBackground
-       style={GlobalStyle.Trans_Container}
-        blurRadius={200}
-        source={{uri: item.image}}> */}
-      <Header Title={item.title} c_back Container={{ marginTop: vs(20) }} arrowCircleRestyle={{ marginTop: 0 }} />
+      <Header Title={item.title} Back  arrowCircleRestyle={{ marginTop: 0 }} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.ImageBackground}>
           <ImageBackground
@@ -69,14 +56,13 @@ const Category_Detail = ({ navigation, route }) => {
               data={item}
               onPress={() =>
                 navigation.navigate('singleBookDetail', {
-                  item: item,
+                  item
                 })
               }
             />
           )}
         />
       </ScrollView>
-      {/* </ImageBackground> */}
     </View>
   );
 };

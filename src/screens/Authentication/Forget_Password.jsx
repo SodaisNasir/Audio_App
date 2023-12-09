@@ -1,4 +1,4 @@
-import {StyleSheet, View, ScrollView} from 'react-native';
+import {View, ScrollView} from 'react-native';
 import React, {useState} from 'react';
 import BackgroundImage from '../../components/BackgroundImage';
 import DoubleText from '../../components/Header/DoubleText';
@@ -85,4 +85,3 @@ const Forget_Password = ({navigation}) => {
 
 export default Forget_Password;
 
-const styles = StyleSheet.create({});

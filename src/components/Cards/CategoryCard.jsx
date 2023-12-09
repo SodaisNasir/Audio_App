@@ -1,10 +1,9 @@
-import React, {useRef, useState} from 'react';
+import React from 'react';
 import {
   StyleSheet,
   Text,
   Dimensions,
   ImageBackground,
-  Animated,
   Pressable,
 } from 'react-native';
 import {scale} from 'react-native-size-matters';
@@ -12,30 +11,12 @@ import {GlobalStyle} from '../../Constants/GlobalStyle';
 import {Colors} from '../../utils/Colors';
 import {tab} from '../../Constants/Responsive';
 import { Font } from '../../utils/font';
+import { useButtonAnimation } from '../../hooks';
 
 const {height} = Dimensions.get('screen');
 const CategoryCard = ({data, onPress}) => {
-  const [isPressed, setIsPressed] = useState(false);
-
-  const scaleValue = useRef(new Animated.Value(1)).current;
-
-  const handlePressIn = () => {
-    setIsPressed(true);
-    Animated.timing(scaleValue, {
-      toValue: 0.95,
-      duration: 1000,
-      useNativeDriver: true,
-    }).start();
-  };
-
-  const handlePressOut = () => {
-    setIsPressed(false);
-    Animated.timing(scaleValue, {
-      toValue: 1,
-      duration: 1000,
-      useNativeDriver: true,
-    }).start();
-  };
+  const { isPressed, scaleValue, handlePressIn, handlePressOut } =
+    useButtonAnimation();
   return (
     <Pressable
       onPress={onPress}

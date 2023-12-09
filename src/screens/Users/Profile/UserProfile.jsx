@@ -6,19 +6,16 @@ import {
   ScrollView,
   TouchableOpacity,
   Image,
-  PermissionsAndroid,
 } from 'react-native';
 import React, {useCallback, useState} from 'react';
 import {GlobalStyle} from '../../../Constants/GlobalStyle';
 import {useFocusEffect} from '@react-navigation/native';
-import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import Header from '../../../components/Header/Header';
 import {useForm} from 'react-hook-form';
 import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import {Colors} from '../../../utils/Colors';
 import Loading from '../../../components/Lotties/Loading';
 import ImagePickerModal from '../../../components/Modals/ImagePickerModal';
-import Toast from 'react-native-simple-toast';
 import {useSelector} from 'react-redux';
 import {EmailRegix, NameRegix} from '../../../utils/url';
 import CustomInput from '../../../components/Inputs/CustomInput';
@@ -28,79 +25,32 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Zocial from 'react-native-vector-icons/Zocial';
 import {Font} from '../../../utils/font';
 import CustomButton from '../../../components/CustomButton';
+import {useImagePicker} from '../../../hooks';
 
 const UserProfile = ({navigation}) => {
   const userDetails = useSelector(state => state.userDetails);
 
   const [edit, setEdit] = useState(false);
   const [isDpViewVisible, setIsDpViewVisible] = useState(false);
-  const [saveImage, setSaveImage] = useState();
-  const [pickerModal, setPickerModal] = useState(false);
   const [load, setLoad] = useState(false);
 
   const onSubmit = () => {
-    console.log('submit');
+    console.log('isDpViewVisible', isDpViewVisible);
+    setLoad(true);
+    setTimeout(() => {
+      setLoad(false);
+    }, 2000);
   };
-  const pickPhoto = () => {
-    let options = {
-      storageOptions: {
-        mediaType: 'photo',
-        path: 'image',
-        includeExtra: true,
-      },
-      selectionLimit: 1,
-    };
 
-    launchImageLibrary(options, res => {
-      if (res.didCancel) {
-        Toast.show('Picker is Canceled');
-      } else if (res.error) {
-        console.log('====> imagePicker');
-      } else {
-        setSaveImage({
-          name: res.assets?.[0]?.fileName,
-          uri: res.assets?.[0]?.uri,
-          type: res.assets?.[0]?.type,
-        });
-        // setShowImage(false);
-      }
-    });
-  };
-  const cameraLaunch = () => {
-    let options = {
-      storageOptions: {
-        skipBackup: true,
-        path: 'images',
-      },
-    };
-    launchCamera(options, res => {
-      const granted = PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.CAMERA,
-      );
-      console.log('Response = ', res);
-      if (res.didCancel) {
-        console.log('User cancelled image picker');
-      } else if (res.error) {
-        console.log('ImagePicker Error: ', res.error);
-      } else {
-        setSaveImage({
-          name: res.assets?.[0]?.fileName,
-          uri: res.assets?.[0]?.uri,
-          type: res.assets?.[0]?.type,
-        });
-        // setShowImage(false);
-      }
-    });
-  };
+  const {cameraLaunch, galleryLaunch, image, picker, setPicker} =
+    useImagePicker();
+
   const ImagePress = () => {
     if (edit) {
-      setPickerModal(true);
+      setPicker(true);
     } else {
       setIsDpViewVisible(true);
     }
-  };
-  const togglePickerModal = () => {
-    setPickerModal(!pickerModal);
   };
   const {
     control,
@@ -115,7 +65,6 @@ const UserProfile = ({navigation}) => {
       });
     }, []),
   );
-  console.log(saveImage);
   return (
     <SafeAreaView style={GlobalStyle.Container}>
       <Header
@@ -151,8 +100,8 @@ const UserProfile = ({navigation}) => {
               resizeMode="cover"
               style={GlobalStyle.Image}
               source={
-                saveImage
-                  ? {uri: saveImage.uri}
+                image
+                  ? {uri: image.uri}
                   : require('../../../assets/image/selectimage.png')
               }
             />
@@ -279,16 +228,10 @@ const UserProfile = ({navigation}) => {
       </ScrollView>
       <Loading isVisible={load} />
       <ImagePickerModal
-        isVisible={pickerModal}
-        onClose={togglePickerModal}
-        PressPicture={() => {
-          pickPhoto();
-          togglePickerModal();
-        }}
-        PressCamera={() => {
-          cameraLaunch();
-          togglePickerModal();
-        }}
+        isVisible={picker}
+        onClose={() => setPicker(false)}
+        PressCamera={cameraLaunch}
+        PressPicture={galleryLaunch}
       />
     </SafeAreaView>
   );

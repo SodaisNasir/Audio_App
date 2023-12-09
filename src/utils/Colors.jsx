@@ -15,4 +15,5 @@ export const Colors = {
   ThemeGrey: '#3D4663',
   Ash: '#141824',
   BlackOp: 'rgba(0, 0, 10, 0.75)',
+  GreyBlue: '#1D262F' ,
 };

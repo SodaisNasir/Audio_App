@@ -59,6 +59,7 @@ const Login = ({navigation}) => {
             textStyle={styles.InputTextStyle}
             placeholder="Enter Email address"
             keyboardType={'email-address'}
+            defaultValue="user@gmail.com"
           />
           {errors.email && <Validation title={errors.email.message} />}
           <CustomInput
@@ -77,6 +78,7 @@ const Login = ({navigation}) => {
             }}
             control={control}
             placeholder="Enter Password"
+            defaultValue="12345678"
           />
           {errors.password && <Validation title={errors.password.message} />}
 

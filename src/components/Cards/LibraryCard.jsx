@@ -3,39 +3,21 @@ import {
   Text,
   View,
   Image,
-  Animated,
   Pressable,
   Dimensions,
 } from 'react-native';
-import React, {useState, useRef} from 'react';
+import React from 'react';
 import {GlobalStyle} from '../../Constants/GlobalStyle';
 import {ms, s} from 'react-native-size-matters';
 import * as Progress from 'react-native-progress';
 import {Colors} from '../../utils/Colors';
+import { useButtonAnimation } from '../../hooks';
 
 
-const {width, fontScale} = Dimensions.get('screen');
+const {width} = Dimensions.get('screen');
 const LibraryCard = ({data, onPress}) => {
-  const [isPressed, setIsPressed] = useState(false);
-  const scaleValue = useRef(new Animated.Value(1)).current;
-
-  const handlePressIn = () => {
-    setIsPressed(true);
-    Animated.timing(scaleValue, {
-      toValue: 0.95,
-      duration: 1000,
-      useNativeDriver: true,
-    }).start();
-  };
-
-  const handlePressOut = () => {
-    setIsPressed(false);
-    Animated.timing(scaleValue, {
-      toValue: 1,
-      duration: 1000,
-      useNativeDriver: true,
-    }).start();
-  };
+  const {isPressed, scaleValue, handlePressIn, handlePressOut} =
+  useButtonAnimation();
 
   return (
     <Pressable

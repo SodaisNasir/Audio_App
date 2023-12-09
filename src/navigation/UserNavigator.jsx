@@ -8,12 +8,14 @@ import Dashboard from '../screens/Users/Home/Dashboard';
 import Category_Detail from '../screens/Users/Home/Category_Detail';
 import SingleBookDetail from '../screens/Users/Home/SingleBookDetail';
 import Player from '../screens/Users/Home/Player';
+import Chapters from '../screens/Users/Home/Chapters';
 
 import Profile from '../screens/Users/Profile/UserProfile';
 import Library from '../screens/Users/Library/UserLibrary';
 import Setting from '../screens/Users/Setting/UserSetting';
 import Language from '../screens/Users/Setting/Language';
 import Term from '../screens/Users/Setting/Term';
+import ChangePassword from '../screens/Users/Setting/ChangePassword';
 
 import {ms, s} from 'react-native-size-matters';
 import {Colors} from '../utils/Colors';
@@ -104,15 +106,7 @@ function AllDashboard() {
       <Stack.Screen name="singleBookDetail" component={SingleBookDetail} />
       <Stack.Screen name="player" component={Player} />
       <Stack.Screen name="SearchScreen" component={SearchScreen} />
-    </Stack.Navigator>
-  );
-}
-function AllProfile() {
-  return (
-    <Stack.Navigator
-      screenOptions={{headerShown: false, animation: 'flip'}}
-      initialRouteName="userprofile">
-      <Stack.Screen name="userprofile" component={Profile} />
+      <Stack.Screen name="changePassword" component={ChangePassword} />
     </Stack.Navigator>
   );
 }
@@ -123,6 +117,17 @@ function AllLibrary() {
       screenOptions={{headerShown: false, animation: 'flip'}}
       initialRouteName="book_library">
       <Stack.Screen name="user_library" component={Library} />
+      <Stack.Screen name="chapters" component={Chapters} />
+    </Stack.Navigator>
+  );
+}
+
+function AllProfile() {
+  return (
+    <Stack.Navigator
+      screenOptions={{headerShown: false, animation: 'flip'}}
+      initialRouteName="userprofile">
+      <Stack.Screen name="userprofile" component={Profile} />
     </Stack.Navigator>
   );
 }

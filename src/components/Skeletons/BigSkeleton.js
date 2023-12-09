@@ -8,7 +8,7 @@ const BigSkeleton = () => {
     <SkeletonPlaceholder
       speed={1350}
       borderRadius={scale(15)}
-      highlightColor={Colors.Main}
+      highlightColor={Colors.Sky}
       backgroundColor={Colors.Ash}>
       <SkeletonPlaceholder.Item marginTop={verticalScale(15)}>
         <SkeletonPlaceholder.Item

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, {useCallback, useState} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -7,24 +7,24 @@ import {
   ScrollView,
   Dimensions,
 } from 'react-native';
-import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
+import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 
 import CustomButton from '../../../components/CustomButton';
-import { Colors } from '../../../utils/Colors';
-import { useFocusEffect } from '@react-navigation/native';
-import { GlobalStyle } from '../../../Constants/GlobalStyle';
-import { BaseUrl, token } from '../../../utils/url';
+import {Colors} from '../../../utils/Colors';
+import {useFocusEffect} from '@react-navigation/native';
+import {GlobalStyle} from '../../../Constants/GlobalStyle';
+import {BaseUrl, token} from '../../../utils/url';
 import RenderHtml from 'react-native-render-html';
 import Header from '../../../components/Header/Header';
 import Loading from '../../../components/Lotties/Loading';
-import { Font } from '../../../utils/font';
+import {Font} from '../../../utils/font';
 
-const Term = ({ navigation, route }) => {
-  const {  type } = route.params;
+const Term = ({navigation, route}) => {
+  const {type} = route.params;
   const WhatToShow = type == 'term' ? 'Terms and Conditions' : 'Privacy';
   const [data, setData] = useState('');
   const [loading, setLoading] = useState(false);
-  const { width } = Dimensions.get('window');
+  const {width} = Dimensions.get('window');
   const onSubmit = () => {
     navigation.goBack();
   };
@@ -63,7 +63,8 @@ const Term = ({ navigation, route }) => {
 
   let result = data?.description?.replace(
     /<div(.*?)>/gi,
-    `<div style='color: ${Colors.White};font-family: ${Font.Work500
+    `<div style='color: ${Colors.White};font-family: ${
+      Font.Work500
     }; font-size: ${'15px'};'>`,
   );
 
@@ -73,9 +74,9 @@ const Term = ({ navigation, route }) => {
 
   return (
     <SafeAreaView style={GlobalStyle.Container}>
-        <Header 
-          Title={type !== 'term' ? 'Privacy Policy' : 'Terms and Conditions'}
-          />
+      <Header
+        Title={type !== 'term' ? 'Privacy Policy' : 'Terms and Conditions'}
+      />
       <View style={styles.MainView}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <RenderHtml contentWidth={width} source={source} />
@@ -91,7 +92,7 @@ const Term = ({ navigation, route }) => {
           />
           <Loading isVisible={loading} />
         </ScrollView>
-        </View>
+      </View>
     </SafeAreaView>
   );
 };

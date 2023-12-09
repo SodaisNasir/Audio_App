@@ -33,7 +33,7 @@ const Dashboard = ({navigation}) => {
   return (
     <SafeAreaView style={GlobalStyle.Container}>
       <StatusBar backgroundColor={Colors.Black} />
-      <Header Title='Dashboard' setting />
+      <Header Title="Dashboard" search setting />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={GlobalStyle.Padding}>
           <Text style={styles.Title}>Top Listens from category</Text>
@@ -46,22 +46,22 @@ const Dashboard = ({navigation}) => {
               <Skeleton />
               <Skeleton />
               <Skeleton />
-              <Skeleton />
-              <Skeleton />
             </>
           ) : (
-            Category?.map(item  => (
+            Category?.map(item => (
               <CategoryCard
                 data={item}
                 key={item.id}
-                onPress={() => navigation.navigate('category_detail', {
-                  item:item,
-                })}
+                onPress={() =>
+                  navigation.navigate('category_detail', {
+                    item
+                  })
+                }
               />
             ))
           )}
         </View>
-        <View style={GlobalStyle.Height}/>
+        <View style={GlobalStyle.Height} />
       </ScrollView>
     </SafeAreaView>
   );

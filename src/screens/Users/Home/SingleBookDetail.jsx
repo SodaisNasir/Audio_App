@@ -1,33 +1,36 @@
+import React from 'react';
 import {
   StyleSheet,
   Text,
   View,
-  SafeAreaView,
   Dimensions,
   Image,
-  ImageBackground,
+  Pressable,
 } from 'react-native';
-import React,{useEffect} from 'react';
+import Entypo from 'react-native-vector-icons/Entypo';
 import {GlobalStyle} from '../../../Constants/GlobalStyle';
 import Header from '../../../components/Header/Header';
-import {mvs, s, vs} from 'react-native-size-matters';
+import {s, scale, vs} from 'react-native-size-matters';
 import {Colors} from '../../../utils/Colors';
 import {Font} from '../../../utils/font';
 
 const {width, height} = Dimensions.get('screen');
 const SingleBookDetail = ({navigation, route}) => {
   const {item} = route.params;
-  
+
   return (
-    <View style={[GlobalStyle.Trans_Container, { backgroundColor: Colors.Black, }]}>
-      {/* <ImageBackground
-       style={GlobalStyle.Trans_Container}
-        blurRadius={200}
-        source={{uri: item.image}}> */}
-     <Header c_back />
-        <View style={styles.Image}>
-          <Image style={GlobalStyle.Image} source={{uri: item.image}} />
-        </View>
+    <View
+      style={[GlobalStyle.Trans_Container, {backgroundColor: Colors.Black}]}>
+      <Header Back language />
+      <View style={styles.Image}>
+        <Image style={GlobalStyle.Image} source={{uri: item.image}} />
+      </View>
+      <Pressable
+        android_ripple={GlobalStyle.Yellow_Ripple}
+        style={[styles.SampleBox, GlobalStyle.Row]}>
+        <Entypo name="controller-play" color={Colors.White} size={20} />
+        <Text style={[styles.book, {fontSize: scale(13)}]}>Sample</Text>
+      </Pressable>
       <Text style={[GlobalStyle.TextShadow, styles.category]}>
         {item.book_name}
       </Text>
@@ -38,14 +41,17 @@ const SingleBookDetail = ({navigation, route}) => {
       </View>
       <View style={[GlobalStyle.Row, styles.CenterTextView]}>
         <Text style={[GlobalStyle.TextShadow, styles.book]}>★★★★</Text>
-        <View style={{width:'5%'}} />
+        <View style={{width: '5%'}} />
         <Text style={[GlobalStyle.TextShadow, styles.book]}>200 ratings</Text>
       </View>
       <View style={[GlobalStyle.Row, styles.CenterTextView]}>
-        <Text style={[GlobalStyle.TextShadow, styles.book]}>by {`\n`} {item.author}</Text>
-        <View style={{width:'20%'}} />
-        <Text style={[GlobalStyle.TextShadow, styles.book]}>Narrated ratings {`\n`} 
-            {item.title}
+        <Text style={[GlobalStyle.TextShadow, styles.book]}>
+          by {`\n`} {item.author}
+        </Text>
+        <View style={{width: '20%'}} />
+        <Text style={[GlobalStyle.TextShadow, styles.book]}>
+          Narrated ratings {`\n`}
+          {item.title}
         </Text>
       </View>
       {/* </ImageBackground> */}
@@ -82,8 +88,18 @@ const styles = StyleSheet.create({
     color: Colors.White,
     fontSize: s(15),
     fontFamily: Font.Work500,
-    textAlign:'center'
+    textAlign: 'center',
   },
   CenterTextView: {alignSelf: 'center', marginBottom: vs(10)},
+  SampleBox: {
+    borderRadius: 100,
+    borderWidth: 1,
+    borderColor: Colors.White,
+    alignSelf: 'center',
+    marginTop: vs(10),
+    overflow: 'hidden',
+    paddingHorizontal: 6,
+    paddingVertical: 3,
+  },
 });
 export default SingleBookDetail;

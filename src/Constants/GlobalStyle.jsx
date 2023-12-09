@@ -36,10 +36,6 @@ export const GlobalStyle = StyleSheet.create({
     height: verticalScale(50),
     borderTopColor: Colors.BlackOp,
     borderTopWidth: scale(1),
-    position: 'absolute',
-    bottom: 0,
-    borderTopRightRadius: scale(20),
-    borderTopLeftRadius: scale(20),
   },
   HideBar: {
     display: 'none',
@@ -119,7 +115,7 @@ export const GlobalStyle = StyleSheet.create({
     marginTop: StatusBar.currentHeight + scale(10),
   },
   Height: {
-    height: verticalScale(55),
+    height: verticalScale(10),
   },
   SettingButton: {marginTop: verticalScale(25), width: '90%'},
   ArrowCircle: {
@@ -127,9 +123,9 @@ export const GlobalStyle = StyleSheet.create({
     backgroundColor: Colors.Black,
     width: scale(30),
     aspectRatio: 1 / 1,
-    marginTop:StatusBar.currentHeight,
-    justifyContent:'center',
-    alignItems:'center',
-    marginRight:scale(10)
+    marginTop: StatusBar.currentHeight,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: scale(10),
   },
 });

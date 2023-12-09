@@ -94,10 +94,9 @@ const UserLibrary = ({navigation}) => {
               <LibraryCard
                 data={item}
                 key={item.id}
-                onPress={() => navigation.navigate('player', {item: item})}
+                onPress={() => navigation.navigate('chapters', {item})}
               />
             ))}
-            <View style={GlobalStyle.Height} />
           </ScrollView>
         </>
       )}

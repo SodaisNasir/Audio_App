@@ -5,9 +5,9 @@ import {Colors} from '../../utils/Colors';
 import {Font} from '../../utils/font';
 import {GlobalStyle} from '../../Constants/GlobalStyle';
 
-const DoubleText = ({first, second}) => {
+const DoubleText = ({first, second,}) => {
   return (
-    <View style={GlobalStyle.StatusBar}>
+    <View style={ GlobalStyle.StatusBar}>
       <Text style={styles.first}>{first}</Text>
       <Text style={styles.second}>{second}</Text>
     </View>

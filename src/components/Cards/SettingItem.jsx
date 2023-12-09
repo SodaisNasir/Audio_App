@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View, Pressable} from 'react-native';
-import React, {useCallback} from 'react';
+import React from 'react';
 import {GlobalStyle} from '../../Constants/GlobalStyle';
 
 import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
@@ -7,7 +7,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Font} from '../../utils/font';
 import {Colors} from '../../utils/Colors';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Foundation from 'react-native-vector-icons/Foundation';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 
@@ -17,22 +17,33 @@ const SettingItem = props => {
       android_ripple={GlobalStyle.Yellow_Ripple}
       onPress={props.onPress}
       style={styles.Container}>
-       <View style={GlobalStyle.Row}>
-
-        {props.language && (
-          <FontAwesome name="language" size={scale(20)} color={Colors.White} />
-          )}
+      <View style={GlobalStyle.Row}>
+        {props.password && (
+          <MaterialIcons
+            name="password"
+            size={scale(20)}
+            color={Colors.White}
+          />
+        )}
         {props.delete && (
-          <MaterialCommunityIcons name="delete-alert" size={scale(20)} color={Colors.White} />
-          )}
+          <MaterialCommunityIcons
+            name="delete-alert"
+            size={scale(20)}
+            color={Colors.White}
+          />
+        )}
         {props.Term && (
-          <Foundation name="page-filled" size={scale(20)} color={Colors.White} />
-          )}
+          <Foundation
+            name="page-filled"
+            size={scale(20)}
+            color={Colors.White}
+          />
+        )}
         {props.privacy && (
           <FontAwesome6 name="shield" size={scale(20)} color={Colors.White} />
-          )}
-      <Text style={styles.Text}>{props.Title}</Text>
-          </View>
+        )}
+        <Text style={styles.Text}>{props.Title}</Text>
+      </View>
       <View style={GlobalStyle.Row}>
         <View style={styles.Circle}>
           {props.delete ? (
@@ -63,8 +74,8 @@ const styles = StyleSheet.create({
     color: Colors.White,
     fontFamily: Font.Work600,
     fontSize: scale(16),
-    textTransform:'capitalize',
-    marginLeft:scale(10)
+    textTransform: 'capitalize',
+    marginLeft: scale(10),
   },
   Circle: {
     backgroundColor: Colors.White,
